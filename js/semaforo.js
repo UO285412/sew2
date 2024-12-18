@@ -1,156 +1,175 @@
-class Semaforo {
-    constructor() {
-        this.levels = [0.2, 0.5, 0.8]; 
-        this.lights = 4; 
-        this.unload_moment = null; 
-        this.click_moment = null; 
+/* Miguel Fernández Huerta UO287577 */
 
-        this.difficulty = this.levels[Math.floor(Math.random() * this.levels.length)];
+"use strict"; // para que se haga comprobación de tipos en tiempo de ejecución
+class Semáforo
+{
+    #levels = [0.2, 0.5, 0.8]; /* Array con las dificultades del juego */
+    #lights = 4; /* Entero que representa el número de luces del semáforo */
+    #unload_moment = null; /* Flecha que almacena el momento en el que se inicia la secuencia de apagado del semaforo */
+    #clic_moment = null; /* Flecha que almacena el momento en el que el usuario pulsa el botón que determina su tiempo de reacción */
+    #difficulty;
+
+    constructor()
+    {
+        this.#difficulty = this.#levels[Math.floor(Math.random() * this.#levels.length)]; /* Elige una dificutad del array de dificultades de forma aleatoria */
         this.createStructure();
     }
 
-    createStructure() {
-        const main = document.querySelector("main");
-        const section = document.createElement("section");
-        
-        const header = document.createElement("h2");
-        header.textContent = "Juego de tiempo de reacción";
-        section.appendChild(header);
+    createStructure()
+    {
+        /* Método encargado de crear en el documento HTML las luces del semáforo y el resto
+        de elementos que se utilizarán en el juego a través de ECMAScript */
 
-        for (let i = 0; i < this.lights; i++) {
-            const light = document.createElement("div");
-            section.appendChild(light);
+        /* Este método debe añadir dentro de la etiqueta main del documento los siguientes elementos: 
+            -Un encabezado para el título del juego
+            -Tantos bloques div para luces del semáforo como número de luces tenga la variable lights
+            -Dos botones: 
+                -Uno para arrancar el semáforo
+                -Otro que se pulse para obtener el tiempo de reacción. */
+        var main = document.querySelector("body>main");
+        var seccion = document.createElement("section"); // creamos el elemento sección que contendrá todo el juego del semáforo
+        
+        var encabezado = document.createElement("h2"); // creamos el elemento encabezado h2
+        var contenidoEncabezado = document.createTextNode("Juego del semáforo"); // creamos el contenido del elemento h2
+
+        encabezado.appendChild(contenidoEncabezado); // insertamos el contenido del encabezado
+        seccion.appendChild(encabezado); // insertamos el encabezado en el section del documento
+
+        for(var i = 0; i < this.#lights; i++) // crearemos tantos bloques div como luces tenga el semáforo (variable lights) 
+        {
+            var bloqueDiv = document.createElement("div"); // creamos el bloque div i-ésimo
+            seccion.appendChild(bloqueDiv); // insertamos el bloque div creado en el section del documento html
         }
 
-        // Botón de arranque
-        const startButton = document.createElement("button");
-        startButton.textContent = "Arranque";
-        startButton.type = "button";
-        startButton.addEventListener("click", () => this.initSequence());
-        section.appendChild(startButton);
+        var botonArrancar = document.createElement("button"); // creamos el elemento button que arrancará el semáforo
+        var textoBotonArrancar = document.createTextNode("Arranque"); // creamos el texto que tendrá el botón de arranque del semáforo
+        botonArrancar.appendChild(textoBotonArrancar); // insertamos el texto del botón de arranque del semáforo en dicho botón
+        botonArrancar.setAttribute("type","button");
+        botonArrancar.onclick = this.initSequence.bind(this);
+        seccion.appendChild(botonArrancar); // insertamos el botón de arrancar el semáforo en el section del documento html
 
-        // Botón de reacción
-        const reactionButton = document.createElement("button");
-        reactionButton.textContent = "Reacción";
-        reactionButton.type = "button";
-        reactionButton.disabled = true;
-        reactionButton.addEventListener("click", () => this.stopReaction());
-        section.appendChild(reactionButton);
+        var botonParar = document.createElement("button"); // creamos el elemento button que detendrá el semáforo (y luego se obtendrá y mostrará el tiempo de reacción obtenido)
+        var textoBotonParar = document.createTextNode("Reacción"); // creamos el texto que tendrá el botón de detención del semáforo
+        botonParar.appendChild(textoBotonParar); // insertamos el texto del botón de detención del semáforo en dicho botón
+        botonParar.setAttribute("type","button");
+        botonParar.onclick = this.stopReaction.bind(this);
+        botonParar.setAttribute("disabled","");
+        seccion.appendChild(botonParar); // insertamos el botón de parar el semáforo en el section del documento html
 
-        main.appendChild(section);
-
-        // Guardar referencias directas a los botones
-        this.startButton = startButton;
-        this.reactionButton = reactionButton;
-        this.semaforoSection = section;
+        main.appendChild(seccion); // insertamos la sección con todo el juego del semáforo en el main del documento html
     }
 
-    initSequence() {
-        const main = document.querySelector("main");
-        main.classList.add("load"); 
-        this.startButton.disabled = true;
+    initSequence()
+    {
+        var hermanosSemaforo = $("section:nth-of-type(1)").nextAll();
+        if(hermanosSemaforo)
+        {
+            $.each(hermanosSemaforo, (i, hermano) =>
+            {
+                $(hermano).detach();
+            });
+        }
 
-        setTimeout(() => {
-            this.unload_moment = new Date(); 
+        var seccion = document.querySelector("body>main>section");
+        var parrafoReaccion = document.querySelector("body>main>section>p:last-child");
+        if(parrafoReaccion)
+        {
+            seccion.removeChild(parrafoReaccion);
+        }
+
+        document.querySelector("body>main").classList.add("load"); // añadimos a la etiqueta main la clase load
+        document.querySelector("body>main>section>button:first-of-type").setAttribute("disabled",""); // asignamos el valor true al atributo disabled del botón de arranque del semáforo
+
+        setTimeout(() =>
+        {
+            this.#unload_moment = new Date().getTime();
             this.endSequence();
-        }, 2000 + this.difficulty * 100); 
+        }, this.#difficulty*100 + 2000);
     }
 
-    endSequence() {
-        const main = document.querySelector("main");
-        main.classList.remove("load");
-        main.classList.add("unload");
-
-        this.reactionButton.disabled = false; 
+    endSequence()
+    {
+        /* Habilita el segundo botón del juego, para que el usuario pueda pulsarlo y registrar su tiempo de reacción.
+        Dentro de este método también se debe añadir la clase unload a la etiqueta main del documento para que se ejecute el apagado de las luces del semáforo. */
+        document.querySelector("body>main").classList.remove("load");
+        document.querySelector("body>main>section>button:nth-of-type(2)").removeAttribute("disabled");
+        document.querySelector("body>main").classList.add("unload"); // añadimos a la etiqueta main la clase unload
+        
     }
 
-    stopReaction() {
-        this.click_moment = new Date();
-        const reactionTime = ((this.click_moment - this.unload_moment) / 1000).toFixed(3);
+    stopReaction()
+    {
+        /* Realiza las siguientes acciones, por orden:
+            -Primero, obtener la fecha actual y guardarla en la variable clic_moment.
+            
+            -Segundo, calcular la diferencia entre los valores de las variables unload_moment y clic_moment en milisegundos, 
+            siendo esta diferencia el tiempo de reacción del usuario.
+            
+            -Tercero, crear un párrafo donde informar el usuario de su tiempo de reacción y mostrarlo por pantalla.
+            
+            -Cuarto, quitar las clases load y unload de la etiqueta main.
+            
+            -Quinto, deshabilitar el botón "Reacción" y habilitar el botón "Arranque" */
+            this.#clic_moment = new Date().getTime();
+            var diferencia = ((this.#clic_moment - this.#unload_moment)/1000).toFixed(3);
 
-        const paragraph = document.createElement("p");
-        paragraph.textContent = `Tiempo de reacción: ${reactionTime} segundos`;
-        this.semaforoSection.appendChild(paragraph);
+            var main = document.querySelector("body>main");
+            main.classList.remove("load");
+            main.classList.remove("unload");
 
-        const main = document.querySelector("main");
-        main.classList.remove("load");
-        main.classList.remove("unload");
+            document.querySelector("body>main>section>button:first-of-type").removeAttribute("disabled"); 
+            document.querySelector("body>main>section>button:nth-of-type(2)").setAttribute("disabled","");
 
-        this.startButton.disabled = false;
-        this.reactionButton.disabled = true;
-
-        this.createRecordForm(reactionTime, this.difficulty);
+            this.createRecordForm(diferencia); // llama al método que carga el formulario
     }
 
-    createRecordForm(reactionTime, difficulty) {
-        console.log("Creando formulario para registrar récord...");
-        const form = document.createElement("form");
-        form.method = "POST";
-        form.action = "semaforo.php";
+    createRecordForm(tiempo)
+    {
+        /* Añade, mediante el uso de la biblioteca jQuery, un formulario debajo del
+        semáforo cuando se haya completado el juego de reacción.
+        
+        El formulario debe tener los siguientes campos: 
+            -Nombre de la persona que completó el juego de reacción
 
-        const fieldset = document.createElement("fieldset");
-        const legend = document.createElement("legend");
-        legend.textContent = "Registrar Récord";
+            -Apellidos de la persona que completó el juego de reacción
 
-        // Nombre
-        const labelNombre = document.createElement("label");
-        labelNombre.textContent = "Nombre:";
-        const inputNombre = document.createElement("input");
-        inputNombre.type = "text";
-        inputNombre.name = "nombre";
-        inputNombre.required = true;
-        labelNombre.appendChild(document.createElement("br"));
-        labelNombre.appendChild(inputNombre);
+            -Nivel (valor almacenado en la variable difficulty) del juego de reacción
 
-        // Apellidos
-        const labelApellidos = document.createElement("label");
-        labelApellidos.textContent = "Apellidos:";
-        const inputApellidos = document.createElement("input");
-        inputApellidos.type = "text";
-        inputApellidos.name = "apellidos";
-        inputApellidos.required = true;
-        labelApellidos.appendChild(document.createElement("br"));
-        labelApellidos.appendChild(inputApellidos);
+            -Tiempo de reacción (en segundos)
 
-        // Nivel
-        const labelNivel = document.createElement("label");
-        labelNivel.textContent = "Nivel:";
-        const inputNivel = document.createElement("input");
-        inputNivel.type = "text";
-        inputNivel.name = "nivel";
-        inputNivel.value = difficulty;
-        inputNivel.readOnly = true;
-        labelNivel.appendChild(document.createElement("br"));
-        labelNivel.appendChild(inputNivel);
+        Los campos del nivel y el tiempo empleado vendrán ya rellenos cuando se pinte el formulario
+        y no podrán ser modificados por el usuario.
+        */
 
-        // Tiempo de reacción
-        const labelTiempo = document.createElement("label");
-        labelTiempo.textContent = "Tiempo de reacción (segundos):";
-        const inputTiempo = document.createElement("input");
-        inputTiempo.type = "text";
-        inputTiempo.name = "tiempo";
-        inputTiempo.value = reactionTime;
-        inputTiempo.readOnly = true;
-        labelTiempo.appendChild(document.createElement("br"));
-        labelTiempo.appendChild(inputTiempo);
+        var seccion = $("<section></section>");
+        var encabezado = $("<h2>Sube tu puntuación al ranking!</h2>");
+        var form = $("<form action='#' method='POST' name='formulario'></form>");
+        var campoNombre = $("<label>Introduzca su nombre: </label>").append($("<input type='text' name='nombre' value='' >"));
+        var campoApellidos = $("<label>Introduzca sus apellidos: </label>").append($("<input type='text' name='apellidos' value='' >"));
+        var campoNivel = $("<label>Nivel del juego: </label>").append($("<input type='text' name='nivel' value='"+ this.#getCadenaDificultad() +"' readonly>"));
+        var valorTiempo = tiempo + " segundos";
+        var campoTiempo = $("<label>Tiempo de reacción: </label>").append($("<input type='text' name='tiempo' value='" + valorTiempo + "' readonly>"));
+        var inputGuardar = $("<input type='submit' value='Guardar' >");
+        
+        form.append(campoNombre);
+        form.append(campoApellidos);
+        form.append(campoNivel);
+        form.append(campoTiempo);
+        form.append(inputGuardar);
 
-        const submitButton = document.createElement("button");
-        submitButton.type = "submit";
-        submitButton.textContent = "Guardar Récord";
+        seccion.append(encabezado);
+        seccion.append(form);
+        
+        $("main", document.body).append(seccion);
+    }
 
-        fieldset.appendChild(legend);
-        fieldset.appendChild(labelNombre);
-        fieldset.appendChild(document.createElement("br"));
-        fieldset.appendChild(labelApellidos);
-        fieldset.appendChild(document.createElement("br"));
-        fieldset.appendChild(labelNivel);
-        fieldset.appendChild(document.createElement("br"));
-        fieldset.appendChild(labelTiempo);
-        fieldset.appendChild(document.createElement("br"));
-        fieldset.appendChild(submitButton);
-
-        form.appendChild(fieldset);
-        this.semaforoSection.appendChild(form);
-        console.log("Formulario de récord creado.");
+    #getCadenaDificultad()
+    {
+        switch(this.#difficulty)
+        {
+            case this.#levels[0]: return "Fácil";
+            case this.#levels[1]: return "Normal";
+            case this.#levels[2]: return "Difícil";
+        }
     }
 }
