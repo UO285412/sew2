@@ -133,13 +133,13 @@ obtenerPrevisionTiempo($previsionArticle) {
 procesarPrevisionTiempo(xmlData, previsionArticle) {
     const $xml = $(xmlData);
 
-    // Limpiar contenido
+    // Limpiar contenido previo
     previsionArticle.innerHTML = '';
 
-    const pronosticos = $xml.find('time[from$="12:00:00"]'); 
+    const pronosticos = $xml.find('time[from$="12:00:00"]');
 
-    pronosticos.each(function(index) {
-        if (index < 5) {
+    pronosticos.each(function (index) {
+        if (index < 5) { // Mostrar las primeras 5 previsiones
             const $this = $(this);
 
             const fecha = $this.attr('from').split('T')[0];
@@ -150,22 +150,21 @@ procesarPrevisionTiempo(xmlData, previsionArticle) {
             const iconUrl = `https://openweathermap.org/img/wn/${simboloClima}@2x.png`;
             const lluvia = $this.find('precipitation').attr('value') || 'No disponible';
 
-            const pronosticoHtml = `
-                <article>
-                    <h4>${fecha}</h4>
-                    <img src="${iconUrl}" alt="Icono del clima">
-                    <p>Temperatura Máxima: ${tempMax} °C</p>
-                    <p>Temperatura Mínima: ${tempMin} °C</p>
-                    <p>Humedad: ${humedad}%</p>
-                    <p>Lluvia: ${lluvia}</p>
-                </article>
+            // Crear un elemento <article> usando DOM
+            const pronosticoElement = document.createElement('article');
+            pronosticoElement.innerHTML = `
+                <h4>${fecha}</h4>
+                <img src="${iconUrl}" alt="Icono del clima">
+                <p>Temperatura Máxima: ${tempMax} °C</p>
+                <p>Temperatura Mínima: ${tempMin} °C</p>
+                <p>Humedad: ${humedad}%</p>
+                <p>Lluvia: ${lluvia}</p>
             `;
 
-            previsionArticle.innerHTML += pronosticoHtml;
+            // Añadir el pronóstico al contenedor
+            previsionArticle.appendChild(pronosticoElement);
         }
     });
 }
 
-
 }
-
