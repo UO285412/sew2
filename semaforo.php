@@ -75,7 +75,7 @@ class Record {
     }
 }
 
-// Comprobar si se ha enviado el formulario de récord
+
 $record = new Record();
 $recordsMostrados = false;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -85,12 +85,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nivel = trim($_POST['nivel'] ?? '');
     $tiempo = isset($_POST['tiempo']) ? floatval($_POST['tiempo']) : 0.0;
 
-    // Validar datos (opcional pero recomendado)
+    
     if ($nombre && $apellidos && $nivel && $tiempo > 0) {
-        // Guardar el récord
+     
         $record->saveRecord($nombre, $apellidos, $nivel, $tiempo);
 
-        // Obtener los 10 mejores récords para el nivel actual
+       
         $topRecords = $record->getTopRecords($nivel);
         $recordsMostrados = true;
     } else {
@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Juego del Semáforo</title>
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
-    <script src="js/semaforo.js" defer></script>
+    <script src="js/semaforo.js" ></script>
     <link rel="stylesheet" href="estilo/semaforo_grid.css" />
     <link rel="icon" href="multimedia/imagenes/favicon.ico" />
 </head>
@@ -129,6 +129,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <p>Estás en: <a href="index.html">Inicio</a> | <a href="juegos.html">Juegos</a>| Juego del Semaforo</p>
     
     <main>
+    <script>
+    var semaforo=new Semaforo();
+    
+    </script> 
     <?php
 if ($recordsMostrados) {
     echo "<section>";
@@ -142,8 +146,7 @@ if ($recordsMostrados) {
 
     echo "<script>
     document.addEventListener('DOMContentLoaded', () => {
-        const main = document.querySelector('main');
-        main.innerHTML = '';
+        
        
     });
     </script>";
@@ -153,11 +156,7 @@ if ($recordsMostrados) {
 
     ?>
     </main>
-    <script src="js/semaforo.js" defer></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        window.semaforo = new Semaforo();
-    });
-    </script> 
+   
+    
 </body>
 </html>
