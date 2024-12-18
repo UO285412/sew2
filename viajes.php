@@ -63,7 +63,7 @@ class Moneda {
 ?>
 
 <!DOCTYPE HTML>
-<html lang="es" xml:lang="es">
+<html lang="es">
 <head>
     <meta charset="UTF-8" />
     <meta name="author" content="Nestor Fernandez Garcia" />

@@ -1,5 +1,3 @@
-
-
 class Semaforo {
     constructor() {
         this.levels = [0.2, 0.5, 0.8]; 
@@ -9,22 +7,18 @@ class Semaforo {
 
         this.difficulty = this.levels[Math.floor(Math.random() * this.levels.length)];
         this.createStructure();
-      
     }
 
     createStructure() {
         const main = document.querySelector("main");
         const section = document.createElement("section");
-       
-       
+        
         const header = document.createElement("h2");
         header.textContent = "Juego de tiempo de reacción";
         section.appendChild(header);
 
-        
         for (let i = 0; i < this.lights; i++) {
             const light = document.createElement("div");
-            
             section.appendChild(light);
         }
 
@@ -32,7 +26,7 @@ class Semaforo {
         const startButton = document.createElement("button");
         startButton.textContent = "Arranque";
         startButton.type = "button";
-        startButton.setAttribute("onclick", "semaforo.initSequence()"); // Asignar evento onclick
+        startButton.addEventListener("click", () => this.initSequence());
         section.appendChild(startButton);
 
         // Botón de reacción
@@ -40,22 +34,22 @@ class Semaforo {
         reactionButton.textContent = "Reacción";
         reactionButton.type = "button";
         reactionButton.disabled = true;
-        reactionButton.setAttribute("onclick", "semaforo.stopReaction()"); // Asignar evento onclick
+        reactionButton.addEventListener("click", () => this.stopReaction());
         section.appendChild(reactionButton);
 
         main.appendChild(section);
-        this.semaforoSection = section; 
-        
+
+        // Guardar referencias directas a los botones
         this.startButton = startButton;
         this.reactionButton = reactionButton;
+        this.semaforoSection = section;
     }
 
     initSequence() {
         const main = document.querySelector("main");
         main.classList.add("load"); 
-        this.startButton.disabled = true; 
+        this.startButton.disabled = true;
 
-     
         setTimeout(() => {
             this.unload_moment = new Date(); 
             this.endSequence();
@@ -64,7 +58,7 @@ class Semaforo {
 
     endSequence() {
         const main = document.querySelector("main");
-        main.classList.remove("load"); 
+        main.classList.remove("load");
         main.classList.add("unload");
 
         this.reactionButton.disabled = false; 
@@ -73,114 +67,90 @@ class Semaforo {
     stopReaction() {
         this.click_moment = new Date();
         const reactionTime = ((this.click_moment - this.unload_moment) / 1000).toFixed(3);
-    
+
         const paragraph = document.createElement("p");
         paragraph.textContent = `Tiempo de reacción: ${reactionTime} segundos`;
         this.semaforoSection.appendChild(paragraph);
-    
+
         const main = document.querySelector("main");
         main.classList.remove("load");
         main.classList.remove("unload");
-    
+
         this.startButton.disabled = false;
         this.reactionButton.disabled = true;
-    
+
         this.createRecordForm(reactionTime, this.difficulty);
-    
-       
     }
-    
-   
-    
 
     createRecordForm(reactionTime, difficulty) {
         console.log("Creando formulario para registrar récord...");
-        const form = document.createElement('form');
+        const form = document.createElement("form");
         form.method = "POST";
         form.action = "semaforo.php";
-    
-        const fieldset = document.createElement('fieldset');
-        const legend = document.createElement('legend');
+
+        const fieldset = document.createElement("fieldset");
+        const legend = document.createElement("legend");
         legend.textContent = "Registrar Récord";
-    
+
         // Nombre
-        const labelNombre = document.createElement('label');
+        const labelNombre = document.createElement("label");
         labelNombre.textContent = "Nombre:";
-        const inputNombre = document.createElement('input');
+        const inputNombre = document.createElement("input");
         inputNombre.type = "text";
         inputNombre.name = "nombre";
         inputNombre.required = true;
-        inputNombre.id = "inputNombre"; 
-        labelNombre.setAttribute("for", "inputNombre");
-    
-        labelNombre.appendChild(document.createElement('br'));
+        labelNombre.appendChild(document.createElement("br"));
         labelNombre.appendChild(inputNombre);
-    
+
         // Apellidos
-        const labelApellidos = document.createElement('label');
+        const labelApellidos = document.createElement("label");
         labelApellidos.textContent = "Apellidos:";
-        const inputApellidos = document.createElement('input');
+        const inputApellidos = document.createElement("input");
         inputApellidos.type = "text";
         inputApellidos.name = "apellidos";
         inputApellidos.required = true;
-        inputApellidos.id = "inputApellidos";
-        labelApellidos.setAttribute("for", "inputApellidos");
-    
-        labelApellidos.appendChild(document.createElement('br'));
+        labelApellidos.appendChild(document.createElement("br"));
         labelApellidos.appendChild(inputApellidos);
-    
+
         // Nivel
-        const labelNivel = document.createElement('label');
+        const labelNivel = document.createElement("label");
         labelNivel.textContent = "Nivel:";
-        const inputNivel = document.createElement('input');
+        const inputNivel = document.createElement("input");
         inputNivel.type = "text";
         inputNivel.name = "nivel";
         inputNivel.value = difficulty;
         inputNivel.readOnly = true;
-        inputNivel.id = "inputNivel"; 
-        labelNivel.setAttribute("for", "inputNivel");
-    
-        labelNivel.appendChild(document.createElement('br'));
+        labelNivel.appendChild(document.createElement("br"));
         labelNivel.appendChild(inputNivel);
-    
+
         // Tiempo de reacción
-        const labelTiempo = document.createElement('label');
+        const labelTiempo = document.createElement("label");
         labelTiempo.textContent = "Tiempo de reacción (segundos):";
-        const inputTiempo = document.createElement('input');
+        const inputTiempo = document.createElement("input");
         inputTiempo.type = "text";
         inputTiempo.name = "tiempo";
         inputTiempo.value = reactionTime;
         inputTiempo.readOnly = true;
-        inputTiempo.id = "inputTiempo"; 
-        labelTiempo.setAttribute("for", "inputTiempo");
-    
-        labelTiempo.appendChild(document.createElement('br'));
+        labelTiempo.appendChild(document.createElement("br"));
         labelTiempo.appendChild(inputTiempo);
-    
-     
-        const submitButton = document.createElement('button');
+
+        const submitButton = document.createElement("button");
         submitButton.type = "submit";
         submitButton.textContent = "Guardar Récord";
-    
-     
+
         fieldset.appendChild(legend);
         fieldset.appendChild(labelNombre);
-        fieldset.appendChild(document.createElement('br'));
+        fieldset.appendChild(document.createElement("br"));
         fieldset.appendChild(labelApellidos);
-        fieldset.appendChild(document.createElement('br'));
+        fieldset.appendChild(document.createElement("br"));
         fieldset.appendChild(labelNivel);
-        fieldset.appendChild(document.createElement('br'));
+        fieldset.appendChild(document.createElement("br"));
         fieldset.appendChild(labelTiempo);
-        fieldset.appendChild(document.createElement('br'));
+        fieldset.appendChild(document.createElement("br"));
         fieldset.appendChild(submitButton);
-    
-       
+
         form.appendChild(fieldset);
-    
-       
         this.semaforoSection.appendChild(form);
         console.log("Formulario de récord creado.");
     }
-    
 }
-
