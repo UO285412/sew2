@@ -268,20 +268,20 @@ function mostrarTablas($conn) {
     }
 }
 
-// Almacenar mensajes en variables para imprimirlos más tarde
+
 $mensajeCrear = '';
 $mensajeImportar = '';
 $mensajeExportar = '';
 
-// Manejar la creación de la base de datos y tablas
+
 if (isset($_POST['crear'])) {
-    ob_start(); // Iniciar el buffer de salida
+    ob_start(); 
     crearBBDD($conn, $rutaSQL);
-    $mensajeCrear = ob_get_clean(); // Capturar el mensaje y limpiarlo
+    $mensajeCrear = ob_get_clean();
 }
 
 if (isset($_POST['importar'])) {
-    ob_start(); // Iniciar buffer de salida
+    ob_start(); 
 
     if (isset($_FILES['csv_file']) && $_FILES['csv_file']['error'] == 0) {
         $filename = $_FILES['csv_file']['name'];
@@ -293,19 +293,19 @@ if (isset($_POST['importar'])) {
         if (!array_key_exists($ext, $allowed)) {
             echo "<p>Error: Por favor, sube un archivo con extensión .csv</p>";
         } else {
-            // Seleccionar la base de datos 'decadas'
+          
             if (!$conn->select_db('decadas')) {
                 echo "<p>Error: No se pudo seleccionar la base de datos 'decadas'.</p>";
                 exit;
             }
 
-            // Eliminar registros anteriores de las tablas
+           
             $decadas = ["50s", "60s", "70s", "80s", "90s", "2000s", "2010s"];
             foreach ($decadas as $decada) {
-                $conn->query("DELETE FROM $decada"); // Vaciar cada tabla
+                $conn->query("DELETE FROM $decada"); 
             }
 
-            // Mover el archivo CSV
+          
             $rutaCSV = dirname($rutaCarpetaCSV) . '/' . basename($filename);
             if (move_uploaded_file($_FILES['csv_file']['tmp_name'], $rutaCSV)) {
                 importarCSV($conn, $rutaCSV);
@@ -319,11 +319,11 @@ if (isset($_POST['importar'])) {
         echo "<p>Error al subir el archivo CSV. Código de error: " . $_FILES['csv_file']['error'] . "</p>";
     }
 
-    $mensajeImportar = ob_get_clean(); // Captura el mensaje
+    $mensajeImportar = ob_get_clean();
 }
 
 
-// Manejar la exportación de datos
+
 if (isset($_POST['exportar'])) {
     ob_start();
     $decadaExportar = $_POST['decada_exportar'];
@@ -340,7 +340,7 @@ if (isset($_POST['exportar'])) {
 <!DOCTYPE HTML>
 <html lang="es">
 <head>
-    <!-- Metadatos -->
+
     <meta charset="UTF-8" />
     <title>F1 Desktop - Gestión de Pilotos por Década</title>
     <meta name="author" content="Nestor Fernandez Garcia" />

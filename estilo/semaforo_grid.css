@@ -25,9 +25,9 @@ main > section div {
     width: 100%;
     aspect-ratio: 1;
     border-radius: 50%; /* Círculo perfecto */
-    background-color: #0007; /* Color de la luz apagada */
-    color:#000;
-    border: 0.4rem solid #000; /* Borde más oscuro */
+    background-color: #00000077; /* Color de la luz apagada */
+    color:#000000;
+    border: 0.4rem solid #000000; /* Borde más oscuro */
     transition: background-color 0.5s; /* Transición para el encendido */
 }
 
@@ -52,7 +52,7 @@ main.load div:nth-of-type(4) {
 
 @keyframes light-up {
     to {
-        background-color: red;
+        background-color: #ff0000;
     }
 }
 
@@ -60,7 +60,7 @@ main.load div:nth-of-type(4) {
 /*El color de primer plano lo hereda de div*/
 /* Especificidad (012) */
 main.unload div {
-    background-color: #0007; /* Todas las luces se apagan */
+    background-color: #00000077; /* Todas las luces se apagan */
     animation: light-off 0.5s forwards;
 }
 /*El color de primer plano lo hereda de div*/
@@ -68,6 +68,6 @@ main.unload div {
 /*Redefinicion de background color*/
 @keyframes light-off {
     to {
-        background-color: #0007;
+        background-color: #00000077;
     }
 }

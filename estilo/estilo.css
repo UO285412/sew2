@@ -75,7 +75,7 @@ dd {
 /* El color de fondo lo hereda de body */
 /* Especificidad: (0,0,1) */
 dt {
-  line-height: 1.5;
+ 
   font-weight: bold;
   color: #000055;
 }
@@ -131,17 +131,35 @@ main > section:nth-of-type(1) > article {
   white-space: pre-wrap; /* Preserva saltos de línea */
 }
 
-/* Contenedor del Mapa KML */
+/* Contenedor del Mapa KML  */
 /*Especificidad  (013)*/
 main > section:nth-of-type(2) > article {
   display: flex;
+  flex-direction: column; /* Asegura que cada pronóstico esté en una fila */
   width: 100%;
-  height: 60vh; /* Altura relativa al 60% de la ventana gráfica */
-  margin-top: 2rem; /* Espacio superior relativo al tamaño de la fuente raíz */
+  height: 60vh;
+  margin-top: 2rem;
+  gap:1rem;
+  max-height:none;
   border: 0.2rem solid #800080;
   border-radius: 0.5rem;
-  overflow: hidden;
+  overflow: visible;
 }
+/* Contenedor del Mapa KML  */
+/*Especificidad  (013)*/
+main > section:nth-of-type(2) > article {
+  display: flex;
+  flex-direction: column; /* Asegura que cada pronóstico esté en una fila */
+  width: 100%;
+  height: 60vh;
+  margin-top: 2rem;
+  gap:1rem;
+  max-height:none;
+  border: 0.2rem solid #800080;
+  border-radius: 0.5rem;
+  overflow: visible;
+}
+
 
 /* Contenedor para SVG */
 /*Especificidad  (013)*/

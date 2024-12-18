@@ -5,12 +5,12 @@
 class Memoria {
     constructor() {
         this.cardsArray = [
-            { element: "RedBull", source: "https://upload.wikimedia.org/wikipedia/de/c/c4/Red_Bull_Racing_logo.svg" },
-            { element: "McLaren", source: "https://upload.wikimedia.org/wikipedia/en/6/66/McLaren_Racing_logo.svg" },
-            { element: "Alpine", source: "https://upload.wikimedia.org/wikipedia/fr/b/b7/Alpine_F1_Team_2021_Logo.svg" },
-            { element: "AstonMartin", source: "https://upload.wikimedia.org/wikipedia/fr/7/72/Aston_Martin_Aramco_Cognizant_F1.svg" },
-            { element: "Ferrari", source: "https://upload.wikimedia.org/wikipedia/de/c/c0/Scuderia_Ferrari_Logo.svg" },
-            { element: "Mercedes", source: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Mercedes_AMG_Petronas_F1_Logo.svg" }
+            { element: "RedBull", source: "../F1Desktop/multimedia/imagenes/Red_Bull_Racing_logo.svg" },
+            { element: "McLaren", source: "../F1Desktop/multimedia/imagenes/McLaren_Racing_logo.svg" },
+            { element: "Alpine", source: "../F1Desktop/multimedia/imagenes/Alpine_F1_Team_2021_Logo.svg" },
+            { element: "AstonMartin", source: "../F1Desktop/multimedia/imagenes/Aston_Martin_Aramco_Cognizant_F1.svg" },
+            { element: "Ferrari", source: "../F1Desktop/multimedia/imagenes/Scuderia_Ferrari_Logo.svg" },
+            { element: "Mercedes", source: "../F1Desktop/multimedia/imagenes/Mercedes_AMG_Petronas_F1_Logo.svg" }
         ];
         this.cardsArray = [...this.cardsArray, ...this.cardsArray]; // Duplicar para 12 cartas
         this.shuffleElements();

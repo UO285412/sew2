@@ -13,6 +13,7 @@ header{
   header{
     flex-direction: column;
   }
+  /*Especificidad (0,0,3)*/
   header >nav >a{
     display:inline-block;
     padding-top:0.25rem ;
