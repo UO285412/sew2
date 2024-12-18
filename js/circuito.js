@@ -1,14 +1,20 @@
-/* Tu nombre y datos */
 /* Nestor Fernandez Garcia UO285412 */
 
 "use strict";
 
 class Circuito {
     constructor() {
+    
+        mapboxgl.accessToken = "pk.eyJ1IjoibmVzdG9yMjU0MCIsImEiOiJjbTNmMDhzNWQwanppMmxzYWR4NGhxdTg5In0.3yLmtGrb9H9BRfeqAq0rsQ";
+        this.map = null;
+        this.currentLineId = 'circuit-line';
+
+      
         if (window.File && window.FileReader && window.FileList && window.Blob) {
-            // El navegador soporta la API File de HTML5
+           
+            this.initEventListeners();
         } else {
-            document.body.insertAdjacentHTML('beforeend', "<p>¡¡¡ Este navegador NO soporta el API File y este programa puede no funcionar correctamente !!!</p>");
+            this.mostrarError("¡¡¡ Este navegador NO soporta la API File y este programa puede no funcionar correctamente !!!");
             this.deshabilitarCargaDeFichero();
         }
     }
@@ -20,35 +26,52 @@ class Circuito {
     }
 
     deshabilitarCargaDeFicheroXML() {
-        const xmlInput = document.querySelector("section:nth-of-type(1) input[type='file']");
+        const xmlInput = document.querySelector("main > section:nth-of-type(1) input[type='file']");
         if (xmlInput) {
             xmlInput.disabled = true;
         }
     }
 
     deshabilitarCargaDeFicheroKML() {
-        const kmlInput = document.querySelector("section:nth-of-type(2) input[type='file']");
+        const kmlInput = document.querySelector("main > section:nth-of-type(2) input[type='file']");
         if (kmlInput) {
             kmlInput.disabled = true;
         }
     }
 
     deshabilitarCargaDeFicheroSVG() {
-        const svgInput = document.querySelector("section:nth-of-type(3) input[type='file']");
+        const svgInput = document.querySelector("main > section:nth-of-type(3) input[type='file']");
         if (svgInput) {
             svgInput.disabled = true;
         }
     }
 
-    // Tarea 6: Procesado de un fichero en formato XML con el API File
-    cargarXML() {
-        const fileInput = document.querySelector("section:nth-of-type(1) input[type='file']");
-        const file = fileInput.files[0];
-    
+    initEventListeners() {
+       
+        const xmlInput = document.querySelector("main > section:nth-of-type(1) input[type='file']");
+        const kmlInput = document.querySelector("main > section:nth-of-type(2) input[type='file']");
+        const svgInput = document.querySelector("main > section:nth-of-type(3) input[type='file']");
+
+        if (xmlInput) {
+            xmlInput.addEventListener('change', (event) => this.cargarXML(event));
+        }
+
+        if (kmlInput) {
+            kmlInput.addEventListener('change', (event) => this.cargarKml(event));
+        }
+
+        if (svgInput) {
+            svgInput.addEventListener('change', (event) => this.cargarSVG(event));
+        }
+    }
+
+    // Manejo de la carga de archivos XML
+    cargarXML(event) {
+        const file = event.target.files[0];
         if (!file) return;
-    
+
         const xmlType = "text/xml";
-    
+
         if (file.type.match(xmlType) || file.name.endsWith('.xml')) {
             this.deshabilitarCargaDeFicheroXML();
             this.procesarXML(file);
@@ -56,230 +79,229 @@ class Circuito {
             this.mostrarError("Error: ¡¡¡ Archivo no válido, debe ser un XML !!!");
         }
     }
-    
-    
-    procesarXML(archivo) {
+
+    procesarXML(file) {
         const lector = new FileReader();
-    
+
         lector.onload = () => {
             const xmlContent = lector.result;
-            this.crearCamposXML(archivo, xmlContent);
+            this.displayXMLContent(xmlContent);
         };
-    
+
         lector.onerror = () => {
             this.mostrarError("Error al leer el archivo XML.");
         };
-    
-        lector.readAsText(archivo);
-    }
-    
 
-    crearCamposXML(archivo, xmlContent) {
-        const seccion = document.querySelector("section:nth-of-type(1)");
-    
-        // Mostrar información del archivo
-        const infoArchivo = document.createElement("div");
-        infoArchivo.innerHTML = `
-            <p>Nombre del archivo: ${archivo.name}</p>
-            <p>Tamaño del archivo: ${archivo.size} bytes</p>
-            <p>Tipo del archivo: ${archivo.type}</p>
-            <p>Fecha de la última modificación: ${archivo.lastModifiedDate}</p>
-            <p>Contenido del archivo XML:</p>
-        `;
-        seccion.appendChild(infoArchivo);
-    
-        // Mostrar contenido del XML en un elemento <pre>
-        const preElement = document.createElement("pre");
-        preElement.textContent = xmlContent;
-        seccion.appendChild(preElement);
-    }
-    
-
-    convertirXMLaHTML(xmlNode) {
-        const container = document.createElement("div");
-
-        const nodeName = document.createElement("strong");
-        nodeName.textContent = xmlNode.nodeName;
-        container.appendChild(nodeName);
-
-        // Agrega los atributos del nodo
-        if (xmlNode.attributes) {
-            const attributes = Array.from(xmlNode.attributes).map(
-                (attr) => `${attr.name}="${attr.value}"`
-            );
-            if (attributes.length > 0) {
-                const attrText = document.createElement("p");
-                attrText.textContent = `Atributos: ${attributes.join(", ")}`;
-                container.appendChild(attrText);
-            }
-        }
-
-        // Procesa los nodos hijos
-        Array.from(xmlNode.childNodes).forEach((childNode) => {
-            if (childNode.nodeType === Node.ELEMENT_NODE) {
-                const childHTML = this.convertirXMLaHTML(childNode);
-                container.appendChild(childHTML);
-            } else if (childNode.nodeType === Node.TEXT_NODE && childNode.nodeValue.trim()) {
-                const textNode = document.createElement("p");
-                textNode.textContent = `Texto: ${childNode.nodeValue.trim()}`;
-                container.appendChild(textNode);
-            }
-        });
-
-        return container;
+        lector.readAsText(file);
     }
 
-  // Tarea 7: Lectura y procesamiento de archivos de planimetría
-  cargarKML() {
-    const fileInput = document.querySelector("section:nth-of-type(2) input[type='file']");
-    const archivo = fileInput.files[0];
-
-    if (!archivo) return;
-
-    if (archivo.name.endsWith('.kml')) {
-        this.procesarKML(archivo);
-    } else {
-        this.mostrarError("Error: ¡¡¡ Archivo no válido, debe ser un KML !!!");
-    }
-}
-
-procesarKML(archivo) {
-    const lector = new FileReader();
-
-    lector.onload = () => {
+    displayXMLContent(xmlContent) {
+        // Parsear el contenido XML
         const parser = new DOMParser();
-        const kmlDoc = parser.parseFromString(lector.result, "application/xml");
+        const xmlDoc = parser.parseFromString(xmlContent, "application/xml");
 
-        if (kmlDoc.querySelector("parsererror")) {
-            this.mostrarError("Error: No se pudo procesar el archivo KML.");
+        // Verificar si hay errores en el parseo
+        if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
+            this.mostrarError("Error al parsear el archivo XML.");
             return;
         }
 
-        this.crearCamposKML(kmlDoc);
-    };
+        // Seleccionar el contenedor para mostrar el contenido XML
+        const displayContainer = document.querySelector("main > section:nth-of-type(1) > article");
+        if (!displayContainer) {
+            console.error("Contenedor no encontrado para mostrar el contenido del XML.");
+            return;
+        }
 
-    lector.onerror = () => {
-        this.mostrarError("Error al leer el archivo KML.");
-    };
+        // Limpiar contenido previo
+        displayContainer.innerHTML = "";
 
-    lector.readAsText(archivo);
-}
+    
+        const elements = xmlDoc.getElementsByTagName("*");
 
-crearCamposKML(kmlDoc) {
-    const seccion = document.querySelector("section:nth-of-type(2)");
+        for (let i = 0; i < elements.length; i++) {
+            const element = elements[i];
+    
+            if (element.parentNode === xmlDoc) continue;
 
-    // Eliminar cualquier mapa anterior
-    const mapaExistente = seccion.querySelector("article:nth-of-type(2)");
-    if (mapaExistente) mapaExistente.remove();
+            const p = document.createElement("p");
+            p.textContent = `${element.nodeName}: ${element.textContent.trim()}`;
+            displayContainer.appendChild(p);
+        }
+    }
 
-    // Crear contenedor para el mapa
-    const mapaContainer = document.createElement("article");
-  
-    seccion.appendChild(mapaContainer);
+    // Manejo de la carga de archivos KML
+    cargarKml(event) {
+        const files = event.target.files;
+        if (files.length === 0) {
+            this.mostrarError('Por favor, selecciona un archivo KML.');
+            return;
+        }
 
-    // Inicializar el mapa
-    mapboxgl.accessToken = "pk.eyJ1IjoibmVzdG9yMjU0MCIsImEiOiJjbTNmMDhzNWQwanppMmxzYWR4NGhxdTg5In0.3yLmtGrb9H9BRfeqAq0rsQ";
+        const file = files[0];
+        if (file.type !== 'application/vnd.google-earth.kml+xml' && !file.name.endsWith('.kml')) {
+            this.mostrarError('Por favor, sube un archivo en formato KML.');
+            return;
+        }
 
-    const map = new mapboxgl.Map({
-        container: mapaContainer,
-        style: 'mapbox://styles/mapbox/streets-v11',
-        zoom: 2,
-        attributionControl: false
-    });
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const kmlText = e.target.result;
+            this.procesarKml(kmlText);
+        };
+        reader.readAsText(file);
+    }
 
-    const allCoords = []; // Almacenar todas las coordenadas para ajustar el mapa
+    procesarKml(kmlText) {
+       
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(kmlText, "application/xml");
 
-    map.on('load', () => {
-        // Procesar cada <Placemark> en el archivo KML
-        const placemarks = kmlDoc.querySelectorAll("Placemark");
-        placemarks.forEach((placemark, index) => {
-            // Líneas (LineString)
-            if (placemark.querySelector("LineString")) {
-                const coordinatesText = placemark.querySelector("LineString coordinates").textContent.trim();
-                
-                // Convertir coordenadas al formato correcto
-                const coords = coordinatesText
-                    .split(/\s+/)
-                    .map(coord => {
-                        const match = coord.match(/([\d.]+)°?([EW]),([\d.]+)°?([NS]),?([\d.]*)?/);
-                        if (match) {
-                            let [_, lon, lonDir, lat, latDir, alt] = match;
-                            lon = parseFloat(lon) * (lonDir === 'W' ? -1 : 1); // Convertir longitud
-                            lat = parseFloat(lat) * (latDir === 'S' ? -1 : 1); // Convertir latitud
-                            return [lon, lat, parseFloat(alt) || 0];
-                        }
-                        return null;
-                    })
-                    .filter(coord => coord); // Filtrar coordenadas inválidas
+     
+        const parserError = xml.getElementsByTagName("parsererror");
+        if (parserError.length > 0) {
+            this.mostrarError('Error al parsear el archivo KML.');
+            return;
+        }
 
-                if (coords.length > 0) {
-                    allCoords.push(...coords);
+        
+        const coordinatesElements = xml.getElementsByTagName("coordinates");
+        if (coordinatesElements.length === 0) {
+            this.mostrarError('No se encontraron coordenadas en el archivo KML.');
+            return;
+        }
 
-                    map.addSource(`line-${index}`, {
-                        type: 'geojson',
-                        data: {
-                            type: 'Feature',
-                            geometry: {
-                                type: 'LineString',
-                                coordinates: coords.map(([lon, lat]) => [lon, lat]) // Mapear solo longitud y latitud
-                            }
-                        }
-                    });
+        const coordinatesText = coordinatesElements[0].textContent.trim();
+        const coordLines = coordinatesText.split('\n');
+        const path = [];
 
-                    map.addLayer({
-                        id: `line-${index}`,
-                        type: 'line',
-                        source: `line-${index}`,
-                        layout: {
-                            'line-join': 'round',
-                            'line-cap': 'round'
-                        },
-                        paint: {
-                            'line-color': '#FF0000',
-                            'line-width': 4
-                        }
-                    });
-                }
+        coordLines.forEach(line => {
+            const parsed = this.parseKMLCoordinate(line.trim());
+            if (parsed) {
+                path.push(parsed); // [lon, lat]
             }
         });
 
-        // Ajustar el mapa para mostrar todas las coordenadas
-        if (allCoords.length > 0) {
-            const bounds = allCoords.reduce(
-                (bounds, coord) => bounds.extend([coord[0], coord[1]]),
-                new mapboxgl.LngLatBounds([allCoords[0][0], allCoords[0][1]], [allCoords[0][0], allCoords[0][1]])
-            );
-            map.fitBounds(bounds, { padding: 20 });
-        } else {
-            this.mostrarError("No se encontraron coordenadas válidas en el archivo KML.");
+        if (path.length === 0) {
+            this.mostrarError('No se encontraron coordenadas válidas en el archivo KML.');
+            return;
         }
-    });
-}
 
-// Función para mostrar errores
-mostrarError(mensaje) {
-    alert(mensaje); // Puedes personalizar esta función para mostrar errores en el DOM
-}
+        
+        this.mostrarMapa(path);
+    }
 
+    mostrarMapa(path) {
+        
+        const mapContainer = document.querySelector("main > section:nth-of-type(2) > article");
 
+        if (!mapContainer) {
+            console.error("Contenedor del mapa no encontrado.");
+            return;
+        }
 
+        mapContainer.innerHTML = '';
 
-    // Tarea 8: Lectura y procesamiento de archivos de altimetría
-    cargarSVG() {
-        const fileInput = document.querySelector("section:nth-of-type(3) input[type='file']");
-        const archivo = fileInput.files[0];
+      
+        this.map = new mapboxgl.Map({
+            container: mapContainer, 
+            style: 'mapbox://styles/mapbox/streets-v11', 
+            center: path[0], 
+            zoom: 15
+        });
 
-        if (!archivo) return;
+       
+        this.map.addControl(new mapboxgl.NavigationControl());
 
-        if (archivo.name.endsWith('.svg')) {
+      
+        this.map.on('load', () => {
+            this.addRutaAlMapa(path);
+            this.map.resize(); 
+        });
+    }
+
+    addRutaAlMapa(path) {
+       
+        const geojson = {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+                "type": "LineString",
+                "coordinates": path
+            }
+        };
+
+       
+        if (this.map.getSource(this.currentLineId)) {
+            this.map.removeLayer(this.currentLineId);
+            this.map.removeSource(this.currentLineId);
+        }
+
+        this.map.addSource(this.currentLineId, {
+            "type": "geojson",
+            "data": geojson
+        });
+
+       
+        this.map.addLayer({
+            "id": this.currentLineId,
+            "type": "line",
+            "source": this.currentLineId,
+            "layout": {
+                "line-join": "round",
+                "line-cap": "round"
+            },
+            "paint": {
+                "line-color": "#FF0000",
+                "line-width": 5
+            }
+        });
+
+        
+        const bounds = new mapboxgl.LngLatBounds();
+        path.forEach(coord => bounds.extend(coord));
+        this.map.fitBounds(bounds, { padding: 20 });
+    }
+
+    parseKMLCoordinate(coordStr) {
+     
+        const parts = coordStr.split(',');
+        if (parts.length < 2) return null;
+
+       
+        let lonStr = parts[0].trim();
+        let latStr = parts[1].trim();
+
+        const lonMatch = lonStr.match(/^([\d.]+)°([EW])$/);
+        const latMatch = latStr.match(/^([\d.]+)°([NS])$/);
+
+        if (!lonMatch || !latMatch) return null;
+
+        let lon = parseFloat(lonMatch[1]);
+        const lonDir = lonMatch[2];
+        if (lonDir === 'W') lon = -lon;
+
+        let lat = parseFloat(latMatch[1]);
+        const latDir = latMatch[2];
+        if (latDir === 'S') lat = -lat;
+
+        return [lon, lat];
+    }
+
+    // Manejo de la carga de archivos SVG
+    cargarSVG(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        if (file.name.endsWith('.svg')) {
             this.deshabilitarCargaDeFicheroSVG();
-            this.procesarSVG(archivo);
+            this.procesarSVG(file);
         } else {
             this.mostrarError("Error: ¡¡¡ Archivo no válido, debe ser un SVG !!!");
         }
     }
 
-    procesarSVG(archivo) {
+    procesarSVG(file) {
         const lector = new FileReader();
 
         lector.onload = () => {
@@ -291,24 +313,27 @@ mostrarError(mensaje) {
             this.mostrarError("Error al leer el archivo SVG.");
         };
 
-        lector.readAsText(archivo);
+        lector.readAsText(file);
     }
 
     crearCamposSVG(svgContent) {
-        const seccion = document.querySelector("section:nth-of-type(3)");
+       
+        const seccion = document.querySelector("main > section:nth-of-type(3) > figure");
 
-        const contenedorSVG = document.createElement("div");
-        contenedorSVG.innerHTML = svgContent;
-        seccion.appendChild(contenedorSVG);
+        if (!seccion) {
+            console.error("Contenedor del SVG no encontrado.");
+            return;
+        }
+
+      
+        seccion.innerHTML = svgContent;
+
+
     }
 
-    // Método para mostrar errores
-    mostrarError(mensaje) {
-        const errorPara = document.createElement('p');
-        errorPara.textContent = mensaje;
-        document.body.appendChild(errorPara);
-    }
+  
 }
 
-// Instanciar la clase
-const circuito = new Circuito();
+(() => {
+    new Circuito();
+})();

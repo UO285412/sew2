@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name ="author" content ="Nestor Fernandez Garcia" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego de Memoria</title>
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
@@ -24,11 +25,12 @@
 		<a title="Enlace a meteorologia" href="meteorologia.html">Meteorologia</a>
 	</nav>
     </header>
-    <p>Estás en: Inicio >> Juegos >> Juego de Memoria</p>
+    <p>Estás en: <a href="index.html">Inicio</a> | <a href="juegos.html">Juegos</a>| Juego de Memoria</p>
     <main>
-        
+        <button aria-label="Reiniciar juego">Reiniciar</button>
             <h2>Instrucciones</h2>
             <ol>
+                <li>Desplazate con la rueda del raton para ver todas las cartas</li>
 				<li>Para voltear la carta haz clic en ella.</li>
 				<li>Busca otra carta igual.</li>
 				<li>Si las cartas son distintas se daran otra vez la vuelta.</li>
@@ -39,8 +41,8 @@
             <h2>Juego de Memoria</h2>
             <!-- Aquí se generarán las tarjetas del juego dinámicamente -->
         </section>
-        <button aria-label="Reiniciar juego">Reiniciar</button>
+        
     </main>
-    <script src="js/memoria.js"></script>
+    <script src="js/memoria.js" defer></script>
 </body>
 </html>

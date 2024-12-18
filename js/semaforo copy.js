@@ -91,8 +91,3 @@ class Semaforo {
     }
 }
 
-// Instancia el semáforo
-let semaforo;
-document.addEventListener("DOMContentLoaded", () => {
-    semaforo = new Semaforo();
-});

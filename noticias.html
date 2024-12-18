@@ -3,52 +3,75 @@
 <head>
     <!-- Datos que describen el documento -->
     <meta charset="UTF-8" />
-    <meta name ="author" content ="Nestor Fernandez Garcia" />
-    <meta name ="description" content ="Noticias F1" />
-    <meta name ="keywords" content ="noticias" />
-    <meta name ="viewport" content ="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Nestor Fernandez Garcia" />
+    <meta name="description" content="Noticias F1" />
+    <meta name="keywords" content="noticias, F1, Formula 1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Noticias</title>
+    <!-- Enlaces a CSS -->
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
-    <link rel="stylesheet" type="text/css" href="estilo/article_elements.css">
-    <link rel="icon"  href="multimedia/imagenes/favicon.ico" />
-
-    <script src="js/noticias.js"></script>
+    <link rel="stylesheet" type="text/css" href="estilo/article_elements.css" />
+    <link rel="icon" href="multimedia/imagenes/favicon.ico" />
+    <!-- Script de Noticias -->
+    <script src="js/noticias.js" defer></script>
 </head>
-<body>
 
+<body>
+    <!-- Encabezado principal -->
     <header>
-        <h1><a href="index.html"> F1 DESKTOP</a></h1>
+        <h1><a href="index.html">F1 DESKTOP</a></h1>
         <nav>
-            <a title="Enlace a Inicio" href="index.html"> Inicio</a>
-            <a title="Enlace a piloto" href="piloto.html">Piloto</a>
+            <a title="Enlace a Inicio" href="index.html">Inicio</a>
+            <a title="Enlace a Piloto" href="piloto.html">Piloto</a>
             <a href="noticias.html" class="active">Noticias</a>
-            <a title ="Enlace a calendario" href="calendario.html">Calendario</a>
-            <a title="Enlace a viajes" href="viajes.php">Viajes</a>
-            <a title="Enlace a juegos" href="juegos.html">Juegos</a>
-            <a title="Enlace a circuito" href="circuito.html">Circuito</a>
-            <a title="Enlace a meteorologia" href="meteorologia.html">Meteorologia</a>
+            <a title="Enlace a Calendario" href="calendario.html">Calendario</a>
+            <a title="Enlace a Viajes" href="viajes.php">Viajes</a>
+            <a title="Enlace a Juegos" href="juegos.html">Juegos</a>
+            <a title="Enlace a Circuito" href="circuito.html">Circuito</a>
+            <a title="Enlace a Meteorología" href="meteorologia.html">Meteorología</a>
         </nav>
     </header>
 
+    <!-- Migas de pan -->
+    <p>Estás en: <a href="index.html">Inicio</a> | Noticias</p>
+
+    <!-- Contenido principal -->
     <main>
         <h2>Noticias</h2>
-            <section>
-                <h3>Noticias Existentes</h3>
-                <article>Aquí se mostrarán las noticias cargadas</article>
-            </section>
-            <section>
-                <h3>Añadir Nueva Noticia</h3>
-                <form>
-                    <label for="titulo">Título:</label>
-                    <input type="text" name="titulo" required>
-                    <label for="contenido">Contenido:</label>
-                    <textarea name="contenido" rows="4" required></textarea>
-                    <label for="autor">Autor:</label>
-                    <input type="text" name="autor" required>
-                    <button type="button">Añadir Noticia</button>
-                </form>
-            </section>
+
+        <!-- Sección de noticias existentes -->
+        <section>
+            <h3>Noticias Existentes</h3>
+            <article>
+                <p>Aquí se mostrarán las noticias cargadas.</p>
+            </article>
+        </section>
+
+        <!-- Sección para añadir nueva noticia -->
+        <section>
+            <h3>Añadir Nueva Noticia</h3>
+            <form>
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" placeholder="Introduce el título" required>
+
+                <label for="contenido">Contenido:</label>
+                <textarea id="contenido" name="contenido" rows="4" placeholder="Escribe el contenido" required></textarea>
+
+                <label for="autor">Autor:</label>
+                <input type="text" id="autor" name="autor" placeholder="Tu nombre" required>
+
+                <button type="submit">Añadir Noticia</button>
+            </form>
+        </section>
     </main>
+
+    <!-- Script de inicialización -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            var noticias = new Noticias();
+            noticias.createDisplaySection();
+        });
+    </script>
 </body>
 </html>

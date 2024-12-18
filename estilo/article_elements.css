@@ -9,12 +9,12 @@ main article {
 }
 /* Especificidad:(0,0,3)*/
 main article h2 {
-    font-size: 1.125rem; /* Aproximadamente 18px en tamaño relativo */
+    font-size: 1.125rem;
     margin-bottom: 0.5em;
 }
 /* Especificidad:(0,0,3)*/
 main article img {
-    width: 3rem; /* Aproximadamente 48px en tamaño relativo */
+    width: 3rem; 
     height: 3rem;
 }
 /* Especificidad:(0,0,3)*/

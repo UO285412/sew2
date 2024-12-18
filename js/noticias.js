@@ -41,31 +41,30 @@ class Noticias {
         const tituloInfo = document.createElement("h2");
         tituloInfo.textContent = "Información del archivo";
         seccionInfo.appendChild(tituloInfo);
-
+    
         this.nombreArchivo = document.createElement("p");
         this.tamañoArchivo = document.createElement("p");
         this.tipoArchivo = document.createElement("p");
         this.ultimaModificacion = document.createElement("p");
-
+    
         seccionInfo.append(this.nombreArchivo, this.tamañoArchivo, this.tipoArchivo, this.ultimaModificacion);
         main.appendChild(seccionInfo);
-
+    
         // Sección de contenido del archivo
         const seccionContenido = document.createElement("section");
         const tituloContenido = document.createElement("h2");
         tituloContenido.textContent = "Contenido del archivo de texto";
         seccionContenido.appendChild(tituloContenido);
-
+    
         this.areaVisualizacion = document.createElement("pre");
         this.areaVisualizacion.setAttribute("aria-label", "Área de visualización del contenido");
         
         this.errorArchivo = document.createElement("p");
-        this.errorArchivo.style.color = "red"; // Mensaje de error en rojo
-        
         seccionContenido.append(this.areaVisualizacion, this.errorArchivo);
-     
+    
+        main.appendChild(seccionContenido);
     }
-
+    
     readInputFile(event) {
         const archivo = event.target.files[0];
         if (!archivo) return;
@@ -145,7 +144,3 @@ addNews() {
 }
 }
 
-// Inicializa la clase Noticias cuando el DOM esté cargado
-document.addEventListener("DOMContentLoaded", () => {
-new Noticias();
-});

@@ -3,9 +3,9 @@
 --
 
 CREATE TABLE `registro` (
-  `nombre` text NOT NULL,
-  `apellidos` text NOT NULL,
-  `nivel` int(11) NOT NULL,
-  `tiempo` decimal(10,0) NOT NULL
+  `nombre` varchar(30) NOT NULL,
+  `apellidos` varchar(30) NOT NULL,
+  `nivel` decimal(3,2) NOT NULL,
+  `tiempo` decimal(8,3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 COMMIT;

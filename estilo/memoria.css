@@ -1,3 +1,4 @@
+/*Especificidad (0,0,2)*/
 main > section {
     display: grid;
     grid-template-columns: repeat(4, 20%);
@@ -7,20 +8,20 @@ main > section {
     align-items: center;
     justify-content: center;
 }
-
+/*Especificidad (0,0,3)*/
 main > section h2 {
     grid-column: span 4;
     text-align: center;
 }
-
+/*Especificidad (0,0,3)*/
 main > section > button {
     grid-column: span 2;
     padding: 0.5rem 1rem;
 }
-
+/*Especificidad (0,0,2)*/
 /* Estilo de cada carta */
 section > article {
-    background-color: #b3499f;
+    background-color: #fafafa;
     width: 100%;
     aspect-ratio: 2/1;
     border-radius: 0.5rem;
@@ -32,32 +33,37 @@ section > article {
     transition: transform 0.5s;
     cursor: pointer;
 }
-
-/* Frente y reverso de la carta */
-section > article > figcaption,
-section > article > img {
+/*Especificidad (0,0,3)*/
+section > article > h3, section > article > img {
     position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
     border-radius: 0.5rem;
+    color: #454545;
+    background-color: #f0f0f0;
 }
 
-/* Frente (texto) */
-section > article > figcaption {
+/* Mostrar el frente (texto) */
+/*Especificidad (0,0,3)*/
+section > article > h3 {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    color: #f0f0f0;
+    
+   
+    
 }
 
 /* Reverso (imagen), rotado 180 grados por defecto */
+/*Especificidad (0,0,3)*/
 section > article > img {
     transform: rotateY(180deg);
 }
 
 /* Cuando data-flipped="true" la carta se voltea */
+/*Especificidad (0,1,2)*/
 section > article[data-flipped="true"] {
     transform: rotateY(180deg);
 }

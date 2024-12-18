@@ -5,25 +5,19 @@ class Viajes {
         this.errorMessage = null;
 
         this.initGeolocation();
-        this.initButton();
+        this.initLoadMapsButton(); // Configurar botón
     }
 
     initGeolocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 this.storePosition.bind(this),
-                this.handleError.bind(this),
-                { enableHighAccuracy: true }
+                this.handleError.bind(this)
             );
         } else {
             this.errorMessage = "Geolocalización no soportada por el navegador.";
             this.displayError();
         }
-    }
-
-    initButton() {
-        const button = document.querySelector("main > button");
-        button.addEventListener("click", () => this.displayMaps());
     }
 
     storePosition(position) {
@@ -51,11 +45,15 @@ class Viajes {
     }
 
     displayPosition() {
-        const locationArticle = document.querySelector("main > article:nth-of-type(1)");
-        locationArticle.innerHTML = `
-            <p>Latitud: ${this.latitude}</p>
-            <p>Longitud: ${this.longitude}</p>
-        `;
+        const locationArticle = document.querySelector("main > article:nth-of-type(2)");
+        
+        const latElement = document.createElement("p");
+        latElement.textContent = "Latitud: " + this.latitude;
+        locationArticle.appendChild(latElement);
+
+        const lonElement = document.createElement("p");
+        lonElement.textContent = "Longitud: " + this.longitude;
+        locationArticle.appendChild(lonElement);
     }
 
     displayError() {
@@ -66,7 +64,7 @@ class Viajes {
     }
 
     displayStaticMap() {
-        const mapArticle = document.querySelector("main > article:nth-of-type(2)");
+        const mapArticle = document.querySelector("main > article:nth-of-type(3) > div");
 
         const mapUrl = `https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s+fb0e55(${this.longitude},${this.latitude})/${this.longitude},${this.latitude},16,0/400x500?access_token=pk.eyJ1IjoibmVzdG9yMjU0MCIsImEiOiJjbTNmMDhzNWQwanppMmxzYWR4NGhxdTg5In0.3yLmtGrb9H9BRfeqAq0rsQ`;
 
@@ -74,40 +72,72 @@ class Viajes {
     }
 
     displayDynamicMap() {
-        const mapContainer = document.querySelector("main > div");
+        const mapContainer = document.querySelector("main > article:nth-of-type(4) > div");
 
         mapboxgl.accessToken = "pk.eyJ1IjoibmVzdG9yMjU0MCIsImEiOiJjbTNmMDhzNWQwanppMmxzYWR4NGhxdTg5In0.3yLmtGrb9H9BRfeqAq0rsQ";
 
         const map = new mapboxgl.Map({
             container: mapContainer,
-            style: 'mapbox://styles/mapbox/streets-v12',
-            attributionControl:false,
+            style: "mapbox://styles/mapbox/streets-v9",
+            center: [this.longitude, this.latitude],
             zoom: 14
         });
 
-        new mapboxgl.Marker({ color: 'red' })
+        new mapboxgl.Marker()
             .setLngLat([this.longitude, this.latitude])
             .addTo(map);
-        map.on('load', () => {
-            map.flyTo({
-                center: [this.longitude, this.latitude], // Vuela hacia tu ubicación
-                zoom: 14
-                });
-            });
-
-        map.resize();
     }
 
-    displayMaps() {
-        if (this.latitude && this.longitude) {
-            this.displayStaticMap();
-            this.displayDynamicMap();
-        } else {
-            this.displayError();
+    initLoadMapsButton() {
+        // Seleccionamos el botón que está en main, y que no está dentro de los article
+        const button = document.querySelector("main > button");
+        if (button) {
+            button.addEventListener("click", () => {
+                if (this.latitude && this.longitude) {
+                    this.displayStaticMap();
+                    this.displayDynamicMap();
+                } else {
+                    alert("La geolocalización aún no se ha completado.");
+                }
+            });
         }
     }
-}
+    
 
-document.addEventListener("DOMContentLoaded", () => {
-    new Viajes();
-});
+
+    inicializarCarrusel() {
+        const slides = document.querySelectorAll("article:nth-of-type(1) > img");
+        const nextSlide = document.querySelector("article:nth-of-type(1) button:nth-of-type(1)");
+
+        let curSlide = 0;
+        let maxSlide = slides.length - 1;
+
+        nextSlide.addEventListener("click", function () {
+            if (curSlide === maxSlide) {
+                curSlide = 0;
+            } else {
+                curSlide++;
+            }
+
+            slides.forEach((slide, indx) => {
+                var trans = 100 * (indx - curSlide);
+                $(slide).css('transform', 'translateX(' + trans + '%)')
+            });
+        });
+
+        const prevSlide = document.querySelector("article:nth-of-type(1) button:nth-of-type(2)");
+
+        prevSlide.addEventListener("click", function () {
+            if (curSlide === 0) {
+                curSlide = maxSlide;
+            } else {
+                curSlide--;
+            }
+
+            slides.forEach((slide, indx) => {
+                var trans = 100 * (indx - curSlide);
+                $(slide).css('transform', 'translateX(' + trans + '%)')
+            });
+        });
+    }
+}

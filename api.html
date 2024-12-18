@@ -27,7 +27,7 @@
             <a title="Enlace a meteorologia" href="meteorologia.html">Meteorologia</a>
         </nav>
     </header>
-    <p>Estás en: Inicio | Juegos | API</p>
+    <p>Estás en: <a href="index.html">Inicio</a> | <a href="juegos.html">Juegos</a>| API</p>
     <main>
         <section>
             <h2>Geolocalización del Circuito</h2>
@@ -40,7 +40,11 @@
         </section>
         <section>
             <h2>Cargar Datos del Circuito</h2>
-            <input type="file" accept=".txt" aria-label="Cargar archivo del circuito">
+            <label>
+                Cargar archivo del circuito:
+                <input type="file" name="circuito" accept=".txt">
+              </label>
+              
             <article>
                 <h3>Datos del Archivo:</h3>
                 <p>Contenido del archivo cargado aparecerá aquí.</p>

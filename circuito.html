@@ -1,8 +1,6 @@
 <!DOCTYPE HTML>
-
 <html lang="es">
 <head>
-    <!-- Datos que describen el documento -->
     <meta charset="UTF-8" />
     <meta name="author" content="Nestor Fernandez Garcia" />
     <meta name="description" content="Circuito F1" />
@@ -12,58 +10,58 @@
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
     <link rel="icon" href="multimedia/imagenes/favicon.ico" />
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js" defer></script>
+ 
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/circuito.js" defer></script>
+  
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js" defer></script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
 </head>
 
 <body>
-    <!-- Datos con el contenidos que aparece en el navegador -->
     <header>
         <h1><a href="index.html"> F1 DESKTOP</a></h1>
         <nav>
             <a title="Enlace a Inicio" href="index.html"> Inicio</a>
-            <a title="Enlace a piloto" href="piloto.html">Piloto</a>
-            <a title="Enlace a noticias" href="noticias.html">Noticias</a>
-            <a title="Enlace a calendario" href="calendario.html">Calendario</a>
-            <a title="Enlace a viajes" href="viajes.php">Viajes</a>
-            <a title="Enlace a juegos" href="juegos.html">Juegos</a>
+            <a title="Enlace a Piloto" href="piloto.html">Piloto</a>
+            <a title="Enlace a Noticias" href="noticias.html">Noticias</a>
+            <a title="Enlace a Calendario" href="calendario.html">Calendario</a>
+            <a title="Enlace a Viajes" href="viajes.php">Viajes</a>
+            <a title="Enlace a Juegos" href="juegos.html">Juegos</a>
             <a href="circuito.html" class="active">Circuito</a>
-            <a title="Enlace a meteorologia" href="meteorologia.html">Meteorologia</a>
+            <a title="Enlace a Meteorologia" href="meteorologia.html">Meteorologia</a>
         </nav>
     </header>
     
-	<!-- Migas -->
-	<p>Estás en: Inicio >> Circuito</p>
+    <p>Estás en: <a href="index.html">Inicio</a> | Circuito</p>
 
     <main>
-        <!-- Tarea 6 -->
         <section>
-            <h2>Mostrar un archivo XML</h2>
-            <label>
-                <input type="file" accept=".xml" onchange="circuito.cargarXML()">
-                Subir archivo XML
-            </label>
+            <h2>Procesar Archivo XML</h2>
+            <label for="xmlFileInput">Subir archivo XML</label>
+            <input id="xmlFileInput" type="file" accept=".xml" aria-label="Subir archivo XML">
+            <!-- Contenedor para mostrar el contenido del XML -->
+            <article></article>
         </section>
 
-        <!-- Tarea 7 -->
         <section>
             <h2>Mostrar un archivo KML en un mapa</h2>
-            <label>
-                <input type="file" accept=".kml" onchange="circuito.cargarKML()">
-                Subir archivo KML
-            </label>
+            <label for="kmlFileInput">Subir archivo KML</label>
+            <input id="kmlFileInput" type="file" accept=".kml" aria-label="Subir archivo KML">
+            <!-- Contenedor para el mapa -->
+            <article></article>
         </section>
 
-        <!-- Tarea 8 -->
         <section>
             <h2>Mostrar un archivo SVG</h2>
-            <label>
-                <input type="file" accept=".svg" onchange="circuito.cargarSVG()">
-                Subir archivo SVG
-            </label>
+            <label for="svgFileInput">Subir archivo SVG</label>
+            <input id="svgFileInput" type="file" accept=".svg" aria-label="Subir archivo SVG">
+            <!-- Contenedor para SVG -->
+            <figure></figure>
         </section>
     </main>
+
+    <!-- Scripts -->
+    <script src="js/circuito.js" defer></script>
 </body>
 </html>

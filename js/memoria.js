@@ -1,3 +1,7 @@
+/* Nestor Fernandez Garcia UO285412 */
+
+"use strict";
+
 class Memoria {
     constructor() {
         this.cardsArray = [
@@ -18,13 +22,23 @@ class Memoria {
         this.addEventListeners();
     }
 
+    static {
+        window.addEventListener("DOMContentLoaded", () => new Memoria());
+    }
+
     shuffleElements() {
         this.cardsArray.sort(() => Math.random() - 0.5);
     }
 
     createElements() {
-        const gameBoard = document.querySelector("section");
-        gameBoard.innerHTML = ""; // Vaciar tablero
+      
+        const gameBoard = document.querySelector("main > section");
+        if (!gameBoard) {
+            console.error("Contenedor del juego de memoria no encontrado.");
+            return;
+        }
+        gameBoard.innerHTML = ""; 
+
         this.cardsArray.forEach(card => {
             const cardElement = document.createElement("article");
             cardElement.setAttribute("data-element", card.element);
@@ -43,12 +57,19 @@ class Memoria {
     }
 
     addEventListeners() {
-        document.querySelectorAll("section article").forEach(card => {
+      
+        const cards = document.querySelectorAll("main > section article");
+        cards.forEach(card => {
             card.addEventListener("click", () => this.flipCard(card));
         });
 
+       
         const resetButton = document.querySelector("button[aria-label='Reiniciar juego']");
-        resetButton.addEventListener("click", () => this.resetGame());
+        if (resetButton) {
+            resetButton.addEventListener("click", () => this.resetGame());
+        } else {
+            console.warn("Botón de reinicio no encontrado.");
+        }
     }
 
     flipCard(card) {
@@ -99,7 +120,7 @@ class Memoria {
 
         this.shuffleElements();
 
-        const cards = document.querySelectorAll("section article");
+        const cards = document.querySelectorAll("main > section article");
         cards.forEach(card => {
             card.removeAttribute("data-flipped");
             card.removeAttribute("data-state");
@@ -109,5 +130,3 @@ class Memoria {
         this.addEventListeners();
     }
 }
-
-window.addEventListener("DOMContentLoaded", () => new Memoria());
