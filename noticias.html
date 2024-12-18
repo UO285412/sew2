@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+    <!-- Datos que describen el documento -->
+    <meta charset="UTF-8" />
+    <meta name ="author" content ="Nestor Fernandez Garcia" />
+    <meta name ="description" content ="Noticias F1" />
+    <meta name ="keywords" content ="noticias" />
+    <meta name ="viewport" content ="width=device-width, initial-scale=1.0" />
+    <title>Noticias</title>
+    <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/article_elements.css">
+    <link rel="icon"  href="multimedia/imagenes/favicon.ico" />
+
+    <script src="js/noticias.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1><a href="index.html"> F1 DESKTOP</a></h1>
+        <nav>
+            <a title="Enlace a Inicio" href="index.html"> Inicio</a>
+            <a title="Enlace a piloto" href="piloto.html">Piloto</a>
+            <a href="noticias.html" class="active">Noticias</a>
+            <a title ="Enlace a calendario" href="calendario.html">Calendario</a>
+            <a title="Enlace a viajes" href="viajes.php">Viajes</a>
+            <a title="Enlace a juegos" href="juegos.html">Juegos</a>
+            <a title="Enlace a circuito" href="circuito.html">Circuito</a>
+            <a title="Enlace a meteorologia" href="meteorologia.html">Meteorologia</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Noticias</h2>
+            <section>
+                <h3>Noticias Existentes</h3>
+                <article>Aquí se mostrarán las noticias cargadas</article>
+            </section>
+            <section>
+                <h3>Añadir Nueva Noticia</h3>
+                <form>
+                    <label for="titulo">Título:</label>
+                    <input type="text" name="titulo" required>
+                    <label for="contenido">Contenido:</label>
+                    <textarea name="contenido" rows="4" required></textarea>
+                    <label for="autor">Autor:</label>
+                    <input type="text" name="autor" required>
+                    <button type="button">Añadir Noticia</button>
+                </form>
+            </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+<head>
+    <!-- Datos que describen el documento -->
+    <meta charset="UTF-8" />
+    <meta name="author" content="Nestor Fernandez Garcia" />
+    <meta name="description" content="Circuito F1" />
+    <meta name="keywords" content="circuito" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Circuito</title>
+    <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
+    <link rel="icon" href="multimedia/imagenes/favicon.ico" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js" defer></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/circuito.js" defer></script>
+</head>
+
+<body>
+    <!-- Datos con el contenidos que aparece en el navegador -->
+    <header>
+        <h1><a href="index.html"> F1 DESKTOP</a></h1>
+        <nav>
+            <a title="Enlace a Inicio" href="index.html"> Inicio</a>
+            <a title="Enlace a piloto" href="piloto.html">Piloto</a>
+            <a title="Enlace a noticias" href="noticias.html">Noticias</a>
+            <a title="Enlace a calendario" href="calendario.html">Calendario</a>
+            <a title="Enlace a viajes" href="viajes.php">Viajes</a>
+            <a title="Enlace a juegos" href="juegos.html">Juegos</a>
+            <a href="circuito.html" class="active">Circuito</a>
+            <a title="Enlace a meteorologia" href="meteorologia.html">Meteorologia</a>
+        </nav>
+    </header>
+    
+	<!-- Migas -->
+	<p>Estás en: Inicio >> Circuito</p>
+
+    <main>
+        <!-- Tarea 6 -->
+        <section>
+            <h2>Mostrar un archivo XML</h2>
+            <label>
+                <input type="file" accept=".xml" onchange="circuito.cargarXML()">
+                Subir archivo XML
+            </label>
+        </section>
+
+        <!-- Tarea 7 -->
+        <section>
+            <h2>Mostrar un archivo KML en un mapa</h2>
+            <label>
+                <input type="file" accept=".kml" onchange="circuito.cargarKML()">
+                Subir archivo KML
+            </label>
+        </section>
+
+        <!-- Tarea 8 -->
+        <section>
+            <h2>Mostrar un archivo SVG</h2>
+            <label>
+                <input type="file" accept=".svg" onchange="circuito.cargarSVG()">
+                Subir archivo SVG
+            </label>
+        </section>
+    </main>
+</body>
+</html>

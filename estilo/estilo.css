@@ -1,0 +1,163 @@
+/* Nestor Fernandez Garcia UO285412 */
+/* Especificidad: (0,0,1) */
+body {
+  font-family: "Arial Black", sans-serif;
+  color: #010100;
+  background-color: #A0E7E5;
+}
+
+/* Especificidad: (0,0,2) */
+/* Color por defecto de enlaces */
+header a {
+  text-decoration-line: none;
+}
+
+/* Especificidad: (0,0,1) */
+video {
+  width: 100%;
+  height: auto;
+}
+
+/* Especificidad: (0,0,1) */
+nav {
+  color: #010100;    
+  background-color: #FFFFFF;  
+}
+
+/* Especificidad: (0,0,2) */
+body > p {
+  font-size: 0.8rem;
+}
+
+/* Especificidad: (0,0,1) */
+table {
+  width: 100%; /* Asegura que la tabla ocupe el 100% del ancho disponible */
+  border-collapse: collapse; /* Elimina los espacios entre las celdas */
+  border: 0.2rem solid purple; /* Borde de la tabla */
+}
+
+/* Especificidad: (0, 0, 1) */
+th, td {
+  border: 0.1rem solid purple; /* Borde para las celdas */
+  padding: 0.625rem; /* Espaciado interno */
+  text-align: left; /* Alineación de texto */
+}
+
+/* Especificidad: (0, 1, 3) */
+/* El color de fondo es el que hereda de body */
+main > section:last-child a {
+  color: #161a98;
+}
+
+/* Especificidad: (0, 2, 3) */
+/* El color de primer plano es el que hereda de main > section:last-child a */
+main > section:last-child a:hover {
+  background: #ffff00;
+}
+
+/* Especificidad: (0, 0, 1) */
+ol {
+  list-style-type: upper-roman;
+}
+
+/* Especificidad: (0, 0, 1) */
+ul {
+  padding-left: 3rem;
+  list-style-type: none;
+}
+
+/* El color de fondo lo hereda de body */
+/* Especificidad: (0, 0, 1) */
+dd {
+  color: #541006;
+}
+
+/* El color de fondo lo hereda de body */
+/* Especificidad: (0, 0, 1) */
+dt {
+  line-height: 1.5;
+  font-weight: bold;
+  color: #000055;
+}
+
+/* El color de fondo lo hereda de nav */
+/* Especificidad: (0, 1, 2) */
+nav a.active {
+  color: #A11B7E; /* Color rojo para el enlace activo */
+  font-weight: bold; /* Hacer el texto en negrita */
+}
+
+/* El color de fondo lo hereda del body */
+/* Especificidad: (0, 0, 2) */
+nav a {
+  text-decoration: none;
+  color: #010100; 
+}
+
+/* Especificidad: (0, 1, 2) */
+/* El color de fondo lo hereda de body */
+nav a:focus {
+  color: #A11B7E; /* Color destacado para el enlace activo */
+  font-weight: bold; /* Opcional: hacer el enlace más grueso */
+  border-bottom: 0.125rem solid #A11B7E; /* Opcional: subrayar el enlace activo */
+}
+
+/* Media query para pantallas pequeñas (móviles y tabletas) */
+/* Especificidad: (0, 0, 1) */
+@media (max-width: 465px) {
+  header {
+    flex-direction: column; /* Apilar h1 y nav verticalmente */
+    align-items: flex-start; /* Alinear los elementos al inicio */
+  }
+}
+
+/* Especificidad: (0, 0, 2) */
+@media screen and (max-width: 465px) {
+  body > p {
+    display: none; /* Ocultar migas de navegación en pantallas pequeñas */
+  }
+}
+
+/* Ajusta el tamaño del contenedor del mapa dinámico */
+main > div {
+  width: 100%;
+  height: 60vh; /* Ajuste para pantallas pequeñas */
+  margin-top: 1rem; /* Espacio adicional */
+}
+
+/* Espaciado entre encabezados y contenido */
+main > h3 {
+  margin-bottom: 0.5rem;
+}
+
+/* Ajusta el tamaño del contenedor del mapa dinámico de circuito */
+main > section > label {
+  width: 100%;
+  height: 60vh; /* Ajuste para pantallas pequeñas */
+}
+
+main > section:nth-of-type(2) div {
+  width: 100vw;
+  height: 60vh;
+  
+ 
+}
+
+/* Ajusta el tamaño de los elementos SVG en la sección correspondiente */
+section > div > svg {
+  width: 100vw;
+  height: 60vh;
+}
+header > button {
+  position: absolute; /* Posición absoluta respecto al contenedor */
+  top: 1rem; /* Separación desde la parte superior */
+  right: 1rem; /* Separación desde la parte derecha */
+  padding: 0.5rem 1rem; /* Espaciado interno */
+  background-color: #A11B7E; /* Color de fondo */
+  color: #FFFFFF; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 0.25rem; /* Bordes redondeados */
+  font-size: 1rem; /* Tamaño del texto */
+  cursor: pointer; /* Cambiar el cursor a puntero */
+}
+

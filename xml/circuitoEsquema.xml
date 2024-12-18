@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<circuito xmlns="http://www.uniovi.es" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.uniovi.es circuito.xsd">
+    <nombre>Circuito de Shanghai</nombre>
+    <longitudCircuito unidades="m">5451</longitudCircuito>
+    <anchura unidades="m">10</anchura>
+    <fecha>2024-10-04</fecha>
+    <hora>2024-10-04T09:00:00</hora>
+    <vueltas>56</vueltas>   
+    <localidad>Shanghai</localidad>
+    <pais>China</pais>
+    <referencias>
+        <referencia link="https://es.wikipedia.org/wiki/Gran_Premio_de_China"></referencia>
+        <referencia link="https://www.caranddriver.com/es/formula-1/calendario/g44472722/formula-1-calendario-2024/"></referencia>
+        <referencia link="https://www.circuitosdecarreras.com/china/circuito-internacional-shanghai/"></referencia>
+    </referencias>
+   <fotografias>
+        <fotografia nombre= "mapaCircuito.jpg"></fotografia>
+        <fotografia nombre="vistaAerea.jpg"></fotografia>
+   </fotografias>
+   <coordenadas><!--Coordenadas centro linea de meta--> 
+        <longitud unidades ="grados"> 31.337208°N </longitud>        
+        <latitud unidades="grados">121.220292°E</latitud>
+        <altitud unidades="m">4</altitud>
+   </coordenadas>
+   <tramos>
+        <tramo numero="Tramo1">
+            <distancia unidades ="m">321.04</distancia>
+            <coordenadas>
+                <longitud unidades ="grados"> 31.336619°N   </longitud>           
+                <latitud unidades="grados">121.216998°E</latitud>
+                <altitud unidades="m">3</altitud>
+           </coordenadas>
+           <sector>1</sector>
+        </tramo>
+        <tramo numero="Tramo2">
+            <distancia unidades ="m">22.85</distancia>
+            <coordenadas>
+                <longitud unidades="grados">31.336725°N  </longitud>           
+                <latitud unidades ="grados">121.216647°E</latitud>
+                <altitud unidades="m">2</altitud>
+            </coordenadas>
+            <sector>1</sector>
+        </tramo> 
+        <tramo numero="Tramo3">
+            <distancia unidades ="m">23.24</distancia>
+            <coordenadas>
+                <longitud unidades="grados">31.336864°N  </longitud>           
+                <latitud unidades ="grados">121.216467°E</latitud>
+                <altitud unidades="m">3</altitud>
+            </coordenadas>
+            <sector>1</sector>
+        </tramo> 
+        <tramo numero="Tramo4">
+            <distancia unidades ="m">37.37</distancia>
+            <coordenadas>
+                <longitud unidades="grados">31.337128°N  </longitud>           
+                <latitud unidades ="grados">121.216220°E</latitud>
+                <altitud unidades="m">3</altitud>
+            </coordenadas>
+            <sector>1</sector>
+        </tramo> 
+        <tramo numero="Tramo5">
+            <distancia unidades ="m">31.43</distancia>
+            <coordenadas>
+                <longitud unidades="grados">31.337405°N  </longitud>           
+                <latitud  unidades="grados">121.216159°E</latitud>
+                <altitud unidades="m">3</altitud>
+            </coordenadas>
+            <sector>1</sector>
+        </tramo> 
+        <tramo numero="Tramo6">
+            <distancia unidades ="m">31.4</distancia>
+            <coordenadas>
+                <longitud unidades="grados">31.337404°N  </longitud>           
+                <latitud unidades="grados">121.216161°E</latitud>
+                <altitud unidades="m">4</altitud> 
+            </coordenadas>
+            <sector>1</sector>
+        </tramo> 
+        <tramo numero="Tramo7">
+            <distancia unidades ="m">26.72</distancia>
+            <coordenadas>
+                <longitud unidades="grados">31.337642°N  </longitud>           
+                <latitud unidades="grados">121.216195°E </latitud>
+                <altitud unidades="m">4</altitud>
+            </coordenadas>
+            <sector>1</sector>    
+        </tramo> 
+        <tramo numero="Tramo8"> 
+            <distancia unidades ="m">20.85</distancia>
+            <coordenadas>
+                <longitud unidades="grados"> 31.337821°N </longitud>           
+                <latitud unidades="grados">121.216271°E </latitud>
+                <altitud unidades="m">4</altitud>
+            </coordenadas>
+            <sector>1</sector>  
+        </tramo> 
+        <tramo numero="Tramo9">
+            <distancia unidades ="m">32.75</distancia>
+            <coordenadas>
+                <longitud unidades="grados">31.338012°N </longitud>           
+                <latitud unidades="grados">121.216525°E </latitud>
+                <altitud unidades="m">3</altitud>
+            </coordenadas>
+            <sector>1</sector> 
+        </tramo> 
+        <tramo numero="Tramo10">
+            <distancia unidades ="m">22.78</distancia>
+            <coordenadas>
+                <longitud unidades="grados">31.338063°N </longitud>           
+                <latitud unidades="grados">121.216760°E</latitud>
+                <altitud unidades="m">3</altitud>
+            </coordenadas>
+            <sector>1</sector>  
+        </tramo> 
+        <tramo numero="Tramo11">  
+            <distancia unidades ="m">17.89</distancia>
+            <coordenadas>
+                <longitud unidades="grados">31.338037°N</longitud>           
+                <latitud unidades="grados"> 121.216941°E</latitud>
+                <altitud unidades="m">3</altitud>
+            </coordenadas>
+            <sector>1</sector>  
+        </tramo> 
+        <tramo numero="Tramo12">
+            <distancia unidades ="m">18.91</distancia>
+            <coordenadas>
+                <longitud unidades="grados">31.337953°N </longitud>           
+                <latitud unidades="grados">121.217121°E</latitud>
+                <altitud unidades="m">2</altitud>
+            </coordenadas>
+            <sector>1</sector> 
+        </tramo> 
+        <tramo numero="Tramo13"> 
+            <distancia unidades ="m">11.52</distancia>
+            <coordenadas>
+                <longitud unidades="grados">31.337862°N </longitud>           
+                <latitud unidades="grados"> 121.217169°E</latitud>
+                <altitud unidades="m">2</altitud>
+            </coordenadas>
+            <sector>1</sector>
+        </tramo> 
+        <tramo numero="Tramo14">
+            <distancia unidades ="m">12.93</distancia>
+            <coordenadas>
+                <longitud unidades="grados">31.337747°N </longitud>           
+                <latitud unidades="grados"> 121.217197°E</latitud>
+                <altitud unidades="m">2</altitud>
+            </coordenadas>
+            <sector>1</sector>
+        </tramo> 
+        <tramo numero="Tramo15">
+            <distancia unidades ="m">50.02</distancia>
+            <coordenadas>
+                <longitud unidades="grados">31.337309°N </longitud>           
+                <latitud unidades="grados">121.217062°E</latitud>
+                <altitud unidades="m">3</altitud>
+            </coordenadas>
+            <sector>1</sector>
+        </tramo> 
+        <tramo numero="Tramo16">
+            <distancia unidades ="m">23.59</distancia>
+            <coordenadas>
+                <longitud unidades="grados">31.337131°N </longitud>           
+                <latitud unidades="grados">121.217206°E</latitud>
+                <altitud unidades="m">3</altitud>
+            </coordenadas>
+            <sector>2</sector>
+        </tramo> 
+        <tramo numero="Tramo17">
+            <distancia unidades ="m">22.05</distancia>
+            <coordenadas>
+                <longitud unidades ="grados"> 31.337099°N   </longitud>           
+                <latitud unidades="grados">121.217438°E</latitud>
+                <altitud unidades="m">2</altitud>
+           </coordenadas>
+           <sector>1</sector>
+        </tramo>
+        <tramo numero="Tramo18">
+            <distancia unidades ="m">20.65</distancia>
+            <coordenadas>
+                <longitud unidades ="grados"> 31.337171°N </longitud>           
+                <latitud unidades="grados">121.217637°E</latitud>
+                <altitud unidades="m">2</altitud>
+           </coordenadas>
+           <sector>1</sector>
+        </tramo>
+        <tramo numero="Tramo19">
+            <distancia unidades ="m">25.82</distancia>
+            <coordenadas>
+                <longitud unidades ="grados"> 31.337365°N </longitud>           
+                <latitud unidades="grados">121.217789°E</latitud>
+                <altitud unidades="m">2</altitud>
+           </coordenadas>
+           <sector>1</sector>
+        </tramo>
+        <tramo numero="Tramo20">
+            <distancia unidades ="m">62.99</distancia>
+            <coordenadas>
+                <longitud unidades ="grados"> 31.337928°N</longitud>           
+                <latitud unidades="grados"> 121.217899°E</latitud>
+                <altitud unidades="m">3</altitud>
+           </coordenadas>
+           <sector>1</sector>
+        </tramo>
+        <tramo numero="Tramo21">
+            <distancia unidades ="m">316.69</distancia>
+            <coordenadas>
+                <longitud unidades ="grados"> 31.340093°N </longitud>           
+                <latitud unidades="grados"> 121.215724°E</latitud>
+                <altitud unidades="m">4</altitud>
+           </coordenadas>
+           <sector>1</sector>
+        </tramo>
+        <tramo numero="Tramo22">
+            <distancia unidades ="m">233.57</distancia>
+            <coordenadas>
+                <longitud unidades ="grados"> 31.342097°N  </longitud>           
+                <latitud unidades="grados"> 121.214939°E</latitud>
+                <altitud unidades="m">4</altitud>
+           </coordenadas>
+           <sector>1</sector>
+        </tramo>
+        <tramo numero="Tramo23">
+            <distancia unidades ="m">14.34</distancia>
+            <coordenadas>
+                <longitud unidades ="grados"> 31.342201°N  </longitud>           
+                <latitud unidades="grados"> 121.215034°E</latitud>
+                <altitud unidades="m">4</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo24">
+            <distancia unidades ="m">13.25</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.342253°N </longitud>           
+                <latitud unidades="grados">121.215160°E</latitud>
+                <altitud unidades="m">5</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo25">
+            <distancia unidades ="m">79.64</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.341833°N  </longitud>           
+                <latitud unidades="grados">121.215845°E</latitud>
+                <altitud unidades="m">4</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo26">
+            <distancia unidades ="m">100.1</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.341088°N </longitud>           
+                <latitud unidades="grados">121.216444°E </latitud>
+                <altitud unidades="m">3</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo27">
+            <distancia unidades ="m">96.56</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.340314°N </longitud>           
+                <latitud unidades="grados">121.216918°E</latitud>
+                <altitud unidades="m">3</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo28">
+            <distancia unidades ="m">72.82</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.339785°N </longitud>           
+                <latitud unidades="grados">121.217368°E</latitud>
+                <altitud unidades="m">3</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo29">
+            <distancia unidades ="m">49.69</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.339549°N </longitud>           
+                <latitud unidades="grados">121.217803°E</latitud>
+                <altitud unidades="m">3</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo30">
+            <distancia unidades ="m">58.34</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.339519°N </longitud>           
+                <latitud unidades="grados">121.218413°E </latitud>
+                <altitud unidades="m">4</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo31">
+            <distancia unidades ="m">43.28</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.339646°N </longitud>           
+                <latitud unidades="grados">121.218847°E</latitud>
+                <altitud unidades="m">2</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo32">
+            <distancia unidades ="m">62.33</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.340021°N </longitud>           
+                <latitud unidades="grados">121.219338°E</latitud>
+                <altitud unidades="m">3</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo33">
+            <distancia unidades ="m">126.93</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.341033°N </longitud>           
+                <latitud unidades="grados">121.219978°E</latitud>
+                <altitud unidades="m">5</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo34">
+            <distancia unidades ="m">35.52</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.341195°N  </longitud>           
+                <latitud unidades="grados">121.220302°E</latitud>
+                <altitud unidades="m">5</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo35">
+            <distancia unidades ="m">34.07</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.341225°N </longitud>           
+                <latitud unidades="grados">121.220658°E</latitud>
+                <altitud unidades="m">5</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo36">
+            <distancia unidades ="m">35.45</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.341157°N  </longitud>           
+                <latitud unidades="grados">121.221016°E</latitud>
+                <altitud unidades="m">3</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo37">
+            <distancia unidades ="m">35.16</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.340948°N </longitud>           
+                <latitud unidades="grados">121.221303°E</latitud>
+                <altitud unidades="m">3</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo38">
+            <distancia unidades ="m">98.98</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.340154°N </longitud>           
+                <latitud unidades="grados">121.221780°E </latitud>
+                <altitud unidades="m">5</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo39">
+            <distancia unidades ="m">13.76</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.340117°N </longitud>           
+                <latitud unidades="grados">121.221917°E</latitud>
+                <altitud unidades="m">5</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo40">
+            <distancia unidades ="m">22.82</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.340166°N </longitud>           
+                <latitud unidades="grados">121.222152°E</latitud>
+                <altitud unidades="m">5</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo41">
+            <distancia unidades ="m">85.16</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.340759°N </longitud>           
+                <latitud unidades="grados">121.222716°E </latitud>
+                <altitud unidades="m">5</altitud>
+           </coordenadas>
+           <sector>2</sector>
+        </tramo>
+        <tramo numero="Tramo42">
+            <distancia unidades ="m">481.39</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.344471°N </longitud>           
+                <latitud unidades="grados">121.220087°E</latitud>
+                <altitud unidades="m">3</altitud>
+           </coordenadas>
+           <sector>3</sector>
+        </tramo>
+        <tramo numero="Tramo43">
+            <distancia unidades ="m">79.81</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.344030°N  </longitud>           
+                <latitud unidades="grados">121.219420°E</latitud>
+                <altitud unidades="m">3</altitud>
+           </coordenadas>
+           <sector>3</sector>
+        </tramo>
+        <tramo numero="Tramo44">
+            <distancia unidades ="m">21.45</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.344114°N </longitud>           
+                <latitud unidades="grados">121.219208°E</latitud>
+                <altitud unidades="m">3</altitud>
+           </coordenadas>
+           <sector>3</sector>
+        </tramo>
+        <tramo numero="Tramo45">
+            <distancia unidades ="m">27.27</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.344296°N </longitud>           
+                <latitud unidades="grados">121.219014°E</latitud>
+                <altitud unidades="m">3</altitud>
+           </coordenadas>
+           <sector>3</sector>
+        </tramo>
+        <tramo numero="Tramo46">
+            <distancia unidades ="m">46.21</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.344690°N  </longitud>           
+                <latitud unidades="grados">121.218853°E</latitud>
+                <altitud unidades="m">4</altitud>
+           </coordenadas>
+           <sector>3</sector>
+        </tramo>
+        <tramo numero="Tramo47">
+            <distancia unidades ="m">60.03</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.345216°N </longitud>           
+                <latitud unidades="grados">121.219016°E</latitud>
+                <altitud unidades="m">4</altitud>
+           </coordenadas>
+           <sector>3</sector>
+        </tramo>
+        <tramo numero="Tramo48">
+            <distancia unidades ="m">66.4</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.345510°N </longitud>           
+                <latitud unidades="grados">121.219625°E </latitud>
+                <altitud unidades="m">4</altitud>
+           </coordenadas>
+           <sector>3</sector>
+        </tramo>
+        <tramo numero="Tramo49">
+            <distancia unidades ="m">83.81</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.345376°N </longitud>           
+                <latitud unidades="grados">121.220496°E </latitud>
+                <altitud unidades="m">4</altitud>
+           </coordenadas>
+           <sector>3</sector>
+        </tramo>
+        <tramo numero="Tramo50">
+            <distancia unidades ="m">1260</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.335938°N  </longitud>           
+                <latitud unidades="grados">121.227877°E </latitud>
+                <altitud unidades="m">5</altitud>
+           </coordenadas>
+           <sector>3</sector>
+        </tramo>
+        <tramo numero="Tramo51">
+            <distancia unidades ="m">17.43</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.335786°N   </longitud>           
+                <latitud unidades="grados">121.227814°E</latitud>
+                <altitud unidades="m">5</altitud>
+           </coordenadas>
+           <sector>3</sector>
+        </tramo>
+        <tramo numero="Tramo52">
+            <distancia unidades ="m">86.87</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.336180°N </longitud>           
+                <latitud unidades="grados">121.227022°E</latitud>
+                <altitud unidades="m">5</altitud>
+           </coordenadas>
+           <sector>3</sector>
+        </tramo>
+        <tramo numero="Tramo53">
+            <distancia unidades ="m">287.74</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.338277°N </longitud>           
+                <latitud unidades="grados">121.225231°E</latitud>
+                <altitud unidades="m">4</altitud>
+           </coordenadas>
+           <sector>3</sector>
+        </tramo>
+        <tramo numero="Tramo54">
+            <distancia unidades ="m">484</distancia>
+            <coordenadas>
+                <longitud unidades ="grados">31.337215°N </longitud>           
+                <latitud unidades="grados">121.220297°E</latitud>
+                <altitud unidades="m">4</altitud>
+           </coordenadas>
+           <sector>3</sector>
+        </tramo>
+        <tramo numero="Tramo55">
+            <distancia unidades ="m">321.04</distancia>
+            <coordenadas>
+                <longitud unidades ="grados"> 31.336619°N   </longitud>           
+                <latitud unidades="grados">121.216998°E</latitud>
+                <altitud unidades="m">3</altitud>
+           </coordenadas>
+           <sector>1</sector>
+        </tramo>
+        
+   </tramos>
+   
+   
+    
+</circuito>

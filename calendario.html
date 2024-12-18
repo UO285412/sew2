@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+<head>
+    <!-- Datos que describen el documento -->
+    <meta charset="UTF-8" />
+    <meta name ="author" content ="Nestor Fernandez Garcia" />
+    <meta name ="description" content ="Calendario F1" />
+    <meta name ="keywords" content ="calendario" />
+    <meta name ="viewport" content ="width=device-width, initial-scale=1.0" />
+    <title>Calendario</title>
+    <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/agenda_grid.css" />
+    <link rel="icon"  href="multimedia/imagenes/favicon.ico" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/agenda.js"></script>
+</head>
+
+<body>
+    <!-- Datos con el contenidos que aparece en el navegador -->
+    <header>
+    <h1><a href="index.html">F1 DESKTOP</a></h1>
+    <nav>
+        <a title="Enlace a Inicio" href="index.html"> Inicio</a>
+        <a title="Enlace a piloto" href="piloto.html">Piloto</a>
+        <a title="Enlace a noticias" href="noticias.html">Noticias</a>
+        <a href ="calendario.html" class="active">Calendario</a>
+        <a title="Enlace a viajes" href="viajes.php">Viajes</a>
+        <a title="Enlace a juegos" href="juegos.html">Juegos</a>
+        <a title="Enlace a circuito" href="circuito.html">Circuito</a>
+        <a title="Enlace a meteorologia" href="meteorologia.html">Meteorologia</a>
+    </nav>
+    </header>
+<p> Estás en: Inicio | Calendario </p>
+<main>    
+    <h2>Fechas de carreras</h2>
+    <button>Mostrar Carreras</button>
+    <section>
+        <!-- Aquí se mostrarán las carreras -->
+    </section>
+    <p>Seccion de calendario de F1 </p>
+    <p>En desarrollo </p>
+</main>
+
+<!-- Código JavaScript para manejar el evento del botón -->
+<script>
+    $(document).ready(function() {
+        const agenda = new Agenda();
+
+        $('main > button').click(function() {
+            agenda.obtenerCarreras();
+        });
+    });
+</script>
+
+</body>
+</html>

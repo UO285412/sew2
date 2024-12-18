@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Nestor Fernandez Garcia" />
+    <meta name="description" content="Viajes F1" />
+    <meta name="keywords" content="viajes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Viajes</title>
+    <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/layout.css" /> 
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" />
+    <link rel="icon"  href="multimedia/imagenes/favicon.ico" />
+    <script src="js/viajes.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1><a href="index.html"> F1 DESKTOP</a></h1>
+        <nav>
+            <a title="Enlace a Inicio" href="index.html"> Inicio</a>
+            <a title="Enlace a piloto" href="piloto.html">Piloto</a>
+            <a title="Enlace a noticias" href="noticias.html">Noticias</a>
+            <a title="Enlace a calendario" href="calendario.html">Calendario</a>
+            <a href="viajes.html" class="active">Viajes</a>
+            <a title="Enlace a juegos" href="juegos.html">Juegos</a>
+            <a title="Enlace a circuito" href="circuito.html">Circuito</a>
+            <a title="Enlace a meteorologia" href="meteorologia.html">Meteorologia</a>
+        </nav>
+    </header>
+
+    <p>Estás en: Inicio | Viajes</p>
+
+    <main>
+        <h2>Viajes para ir a la carrera</h2>
+        <button type="button" aria-label="Mostrar mapas">Mostrar Mapas</button>
+            <h3>Ubicación Actual</h3>
+            <article></article> <!-- Aquí se muestra la ubicación o el mensaje de error -->
+            <h3>Mapa Estático</h3>
+            <article></article> <!-- Aquí se muestra el mapa estático -->
+            <h3>Mapa dinámico</h3>
+            <div></div> <!-- Bloque anónimo para el mapa -->
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Nestor Fernandez Garcia" />
+    <meta name="description" content="Calendario F1" />
+    <meta name="keywords" content="calendario" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendario</title>
+    <link rel="stylesheet" href="estilo/estilo.css" />
+    <link rel="stylesheet" href="estilo/layout.css" />
+    <link rel="stylesheet" href="estilo/agenda_grid.css" />
+    <link rel="icon" href="multimedia/imagenes/favicon.ico" />
+    <script src="js/api.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1><a href="index.html"> F1 DESKTOP</a></h1>
+        <nav>
+            <a title="Enlace a Inicio" href="index.html">Inicio</a>
+            <a title="Enlace a piloto" href="piloto.html">Piloto</a>
+            <a title="Enlace a noticias" href="noticias.html">Noticias</a>
+            <a title="Enlace a calendario" href="calendario.html">Calendario</a>
+            <a title="Enlace a viajes" href="viajes.php">Viajes</a>
+            <a href="juegos.html" class="active">Juegos</a>
+            <a title="Enlace a circuito" href="circuito.html">Circuito</a>
+            <a title="Enlace a meteorologia" href="meteorologia.html">Meteorologia</a>
+        </nav>
+    </header>
+    <p>Estás en: Inicio | Juegos | API</p>
+    <main>
+        <section>
+            <h2>Geolocalización del Circuito</h2>
+            <button>Mostrar Mi Ubicación</button>
+            <article>
+                <h3>Coordenadas:</h3>
+                <p><span>Latitud:</span> <span>N/A</span></p>
+                <p><span>Longitud:</span> <span>N/A</span></p>
+            </article>
+        </section>
+        <section>
+            <h2>Cargar Datos del Circuito</h2>
+            <input type="file" accept=".txt" aria-label="Cargar archivo del circuito">
+            <article>
+                <h3>Datos del Archivo:</h3>
+                <p>Contenido del archivo cargado aparecerá aquí.</p>
+            </article>
+        </section>
+        <section>
+            <h2>Último Circuito Guardado</h2>
+            <article>
+                <h3>Ningún circuito almacenado.</h3>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
