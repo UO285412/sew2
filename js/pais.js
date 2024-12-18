@@ -1,36 +1,36 @@
 class Pais {
-    nombrePais;
-    nombreCapital;
-    cantidadPoblacion;
-    nombreCircuito;
-    tipoGobierno;
-    coordenadasMetaLatitud;
-    coordenadasMetaLongitud;
-    religionMayoritaria;
+    #nombrePais;
+    #nombreCapital;
+    #cantidadPoblacion;
+    #nombreCircuito;
+    #tipoGobierno;
+    #coordenadasMetaLatitud;
+    #coordenadasMetaLongitud;
+    #religionMayoritaria;
 
     constructor(nombrePais, nombreCapital, cantidadPoblacion) {
-        this.nombrePais = nombrePais;
-        this.nombreCapital = nombreCapital;
-        this.cantidadPoblacion = cantidadPoblacion;
+        this.#nombrePais = nombrePais;
+        this.#nombreCapital = nombreCapital;
+        this.#cantidadPoblacion = cantidadPoblacion;
     }
    
     rellenarInformacionRestante()
     {
-        this.nombreCircuito = "Shanghai";
-        this.tipoGobierno = "Gobierno popular estatal";
-        this.coordenadasMetaLatitud = "31.337238171688075"
-        this.coordenadasMetaLongitud = "121.22028643578226";
-        this.religionMayoritaria ="Budismo";
+        this.#nombreCircuito = "Shanghai";
+        this.#tipoGobierno = "Gobierno popular estatal";
+        this.#coordenadasMetaLatitud = "31.337238171688075"
+        this.#coordenadasMetaLongitud = "121.22028643578226";
+        this.#religionMayoritaria ="Budismo";
     }
 
     getNombrePais()
     {
-        return ""+this.nombrePais;
+        return ""+this.#nombrePais;
     }
 
     getNombreCapital()
     {
-        return ""+this.nombreCapital;
+        return ""+this.#nombreCapital;
     }
 
     getInformacionSecundaria()
@@ -40,88 +40,132 @@ class Pais {
         "<ul>"+
             "<li>"+
                 "<h4>Nombre del circuito:</h4>"+
-                "<p>"+this.nombreCircuito+"</p>"+
+                "<p>"+this.#nombreCircuito+"</p>"+
             "</li>"+
             "<li>"+
                 "<h4>Cantidad de poblacion:</h4>"+
-                "<p>"+this.cantidadPoblacion+"</p>"+
+                "<p>"+this.#cantidadPoblacion+"</p>"+
             "</li>"+
             "<li>"+
                 "<h4>Forma de gobierno:</h4>"+
-                "<p>"+this.tipoGobierno+"</p>"+
+                "<p>"+this.#tipoGobierno+"</p>"+
             "</li>"+
             "<li>"+
                 "<h4>Religión mayoritaria:</h4>"+
-                "<p>"+this.religionMayoritaria+"</p>"+
+                "<p>"+this.#religionMayoritaria+"</p>"+
             "</li>"+
         "</ul>";
     }
 
     escribeCoordenadas()
     {
+         
         document.write(
-            "<p>Latitud: "+this.coordenadasLineaMetaLatitud+"</p>"+
-            "<p>Longitud: "+this.coordenadasLineaMetaLongitud+"</p>"
+            "<p>Latitud: "+this.#coordenadasMetaLatitud+"</p>"+
+            "<p>Longitud: "+this.#coordenadasMetaLongitud+"</p>"
         );
     }
-    obtenerPrevisionTiempo() {
-        const meteorologia = {
-            apiKey: "d2b34fee546c2de560551f6b17f107ce",
-            lat: 31.33721258891535,
-            lon: 121.22029650718295,
-            url: "https://api.openweathermap.org/data/2.5/forecast?" +
-                 "lat=31.33721258891535&lon=121.22029650718295&" +
-                 "mode=xml&lang=es&units=metric&appid=d2b34fee546c2de560551f6b17f107ce"
-        };
-
-        $.ajax({
-            url: meteorologia.url,
-            method: 'GET',
-            dataType: 'xml',
-            success: (data) => {
-                this.procesarPrevisionTiempo(data);
-            },
-            error: (jqXHR, textStatus, errorThrown) => {
-                console.error(`Error al obtener la previsión del tiempo: ${textStatus}, ${errorThrown}`);
-            }
-        });
+    mostrarInformacionCompleta() {
+        console.log("Información completa del país.");
+        this.rellenarInformacionRestante();
+    
+        // Información del país
+        const informacionPais = `
+            <h3>Información del País</h3>
+            <p><strong>Nombre del País:</strong> ${this.getNombrePais()}</p>
+            <p><strong>Capital:</strong> ${this.getNombreCapital()}</p>
+            ${this.getInformacionSecundaria()}
+        `;
+    
+        // Información del tiempo (placeholder antes de la carga)
+        const tiempoPlaceholder = `<p>Cargando datos del tiempo...</p>`;
+    
+        // Generar el HTML completo para el documento
+        const htmlCompleto = `
+            <section>
+               
+                <article>
+                    ${informacionPais}
+                </article>
+            </section>
+            <section>
+                <h2>Previsión meteorológica</h2>
+                <article>
+                    ${tiempoPlaceholder}
+                </article>
+            </section>
+        `;
+    
+        // Sobrescribir el contenido del documento con document.write
+        document.write(htmlCompleto);
+    
+        // Obtener la previsión meteorológica
+        const infoTiempoArticle = document.querySelector('main > section:nth-of-type(2) > article');
+        this.obtenerPrevisionTiempo(infoTiempoArticle);
     }
+    
 
-    procesarPrevisionTiempo(xmlData) {
-        console.log(xmlData);
-        const $xml = $(xmlData);
-        const $prevision = $('main').first();
+    
+obtenerPrevisionTiempo($previsionArticle) {
+    const meteorologia = {
+        apiKey: "d2b34fee546c2de560551f6b17f107ce",
+        lat: 31.33721258891535,
+        lon: 121.22029650718295,
+        url: "https://api.openweathermap.org/data/2.5/forecast?" +
+             "lat=31.33721258891535&lon=121.22029650718295&" +
+             "mode=xml&lang=es&units=metric&appid=d2b34fee546c2de560551f6b17f107ce"
+    };
 
-        // Limpiar contenido previo
-        $prevision.empty();
+    $.ajax({
+        url: meteorologia.url,
+        method: 'GET',
+        dataType: 'xml',
+        success: (data) => {
+            this.procesarPrevisionTiempo(data, $previsionArticle);
+        },
+        error: (jqXHR, textStatus, errorThrown) => {
+            console.error(`Error al obtener la previsión del tiempo: ${textStatus}, ${errorThrown}`);
+            $previsionArticle.html(`<p>Error al cargar los datos del tiempo.</p>`);
+        }
+    });
+}
 
-        const pronosticos = $xml.find('time[from$="12:00:00"]'); // Pronósticos del mediodía
+procesarPrevisionTiempo(xmlData, previsionArticle) {
+    const $xml = $(xmlData);
 
-        pronosticos.each(function(index) {
-            if (index < 5) { // Próximos 5 días
-                const $this = $(this);
+    // Limpiar contenido
+    previsionArticle.innerHTML = '';
 
-                const fecha = $this.attr('from').split('T')[0];
-                const tempMax = $this.find('temperature').attr('max');
-                const tempMin = $this.find('temperature').attr('min');
-                const humedad = $this.find('humidity').attr('value');
-                const simboloClima = $this.find('symbol').attr('var');
-                const iconUrl = `https://openweathermap.org/img/wn/${simboloClima}@2x.png`;
-                const lluvia = $this.find('precipitation').attr('value') || 'No disponible';
+    const pronosticos = $xml.find('time[from$="12:00:00"]'); 
 
-                const $article = $('<article></article>');
-                $article.append(
-                    `<h2>${fecha}</h2>`,
-                    `<img src="${iconUrl}" alt="Icono del clima">`,
-                    `<p>Temperatura Máxima: ${tempMax} °C</p>`,
-                    `<p>Temperatura Mínima: ${tempMin} °C</p>`,
-                    `<p>Humedad: ${humedad}%</p>`,
-                    `<p>Lluvia: ${lluvia}</p>`
-                );
+    pronosticos.each(function(index) {
+        if (index < 5) {
+            const $this = $(this);
 
-                $prevision.append($article);
-            }
-        });
-    }
+            const fecha = $this.attr('from').split('T')[0];
+            const tempMax = $this.find('temperature').attr('max');
+            const tempMin = $this.find('temperature').attr('min');
+            const humedad = $this.find('humidity').attr('value');
+            const simboloClima = $this.find('symbol').attr('var');
+            const iconUrl = `https://openweathermap.org/img/wn/${simboloClima}@2x.png`;
+            const lluvia = $this.find('precipitation').attr('value') || 'No disponible';
+
+            const pronosticoHtml = `
+                <article>
+                    <h4>${fecha}</h4>
+                    <img src="${iconUrl}" alt="Icono del clima">
+                    <p>Temperatura Máxima: ${tempMax} °C</p>
+                    <p>Temperatura Mínima: ${tempMin} °C</p>
+                    <p>Humedad: ${humedad}%</p>
+                    <p>Lluvia: ${lluvia}</p>
+                </article>
+            `;
+
+            previsionArticle.innerHTML += pronosticoHtml;
+        }
+    });
+}
+
+
 }
 
