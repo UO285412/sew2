@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
     <link rel="stylesheet" type="text/css" href="estilo/article_elements.css">
     <link rel="icon" href="multimedia/imagenes/favicon.ico" />
+   
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/pais.js"></script>
 </head>
@@ -34,32 +35,17 @@
 <p>Estás en: <a href="index.html">Inicio</a> | Meteorologia</p>
 
 <main>
-    <section>
-        <h2>Información del circuito</h2>
-        <article>
-            <p>País: China</p>
-            <p>Capital: Shanghai</p>
-            <p>Circuito: Circuito Internacional de Shanghai</p>
-            <p>Latitud: 31.337238171688075</p>
-            <p>Longitud: 121.22028643578226</p>
-        </article>
-    </section>
+   
+        <h2>Información del circuito y meteorologia</h2>
+        <script>
+                var pais = new Pais("China", "Shanghai", "1.409.000.000");
+                pais.mostrarInformacionCompleta(); // Llama al método
 
-    <section>
-        <h2>Previsión meteorológica</h2>
-        <article>
-            <p>Cargando datos del tiempo...</p>
-        </article>
-    </section>
+        </script>
+  
+
+   
+      
 </main>
-
-<script>
-    $(document).ready(function () {
-        const pais = new Pais("China", "Shanghai", "1.409.000.000");
-        pais.rellenarInformacionRestante();
-        pais.obtenerPrevisionTiempo();
-    });
-</script>
-
 </body>
 </html>
